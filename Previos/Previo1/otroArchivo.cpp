@@ -1,4 +1,4 @@
-// Ejemplo de creacion de un segundo archivo
+// Ejemplo de creacion de un segundo archivo, commit desde otro branch
 
 #include <iostream>
 
