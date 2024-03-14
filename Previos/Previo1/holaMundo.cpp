@@ -1,4 +1,4 @@
-// Ejemplo inicial de hola mundo
+// Ejemplo inicial de hola mundo con el que se practico git tash
 
 #include <iostream>
 
