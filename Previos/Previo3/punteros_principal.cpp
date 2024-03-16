@@ -1,3 +1,5 @@
+// Ejemplo para comprender el funcionamiento de los punteros
+
 #include <iostream>
 using namespace std;
 

@@ -1,6 +1,5 @@
 /* Ejemplo presentacion pag 17, programa para imprimir las direcciones de
-memoria de cada uno de los elementos de un array
-*/
+memoria de cada uno de los elementos de un array.*/
 
 #include <iostream>
 using namespace std;
