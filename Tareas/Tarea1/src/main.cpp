@@ -8,6 +8,8 @@
 int main() {
     int option;
     int difficulty;
+    int finish;
+    char guessCharacter;
     Ahorcado Struct;
     Ahorcado *StructPointer;
 
@@ -19,7 +21,7 @@ int main() {
 
     /* Dicionario de palabras predeterminado, se dejan espacios vacíos por si el usuario
     desea añadir más palabras para jugar*/
-    std::string dictionary[30] = {"blanco", "bajo", "vaca", "verde", "helado", "preocupado",
+    std::string dictionary[15] = {"blanco", "bajo", "vaca", "verde", "helado", "preocupado",
     "puerta", "dulce", "pollo", "nube", "estrella", "nervioso", "camino", "dibujo", "elefante"};
 
     /* Mostrar menu al usario utilizando bucle para mostrar el menu hasta
@@ -58,7 +60,7 @@ int main() {
                             StructPointer->maxAttemps = 3;
                             break;
                         default:
-                            std::cout << "Esta opción no es válida. Por favor intenta de nuevo." << std::endl;;
+                            std::cout << "Esta opción no es válida. Por favor intenta de nuevo." << std::endl;
                             break;
                     }
 
@@ -66,6 +68,28 @@ int main() {
 
                 break;
             case 2:
+                // Iniciar el juego
+                StartGame(StructPointer, dictionary);
+
+                // Bucle para mostrar el estado de la palabra adivina y preguntar por una letra
+                do {
+                    std::cout << "La palabra es: " << std::endl;
+
+                    // Bucle para mostrar el arreglo wordStatus
+                    for (int i = 0; i < 25; ++i) {
+                        std::cout << StructPointer->wordStatus[i] << " ";
+                    }
+
+                    std::cout << "\nPor favor ingrese una letra" << std::endl;
+                    std::cin >> guessCharacter;
+
+                    // Ingresar el caracter a la funcion para verificar si adivino
+                    void GuessWord(Ahorcado* StructPointer, char guessCharacter);
+
+                    // Llamar cada turno a la funcion que verifica si el juego termino
+                    finish = ChechGame(StructPointer);
+
+                } while (finish =! 1);
                 
                 break;
             case 3:
