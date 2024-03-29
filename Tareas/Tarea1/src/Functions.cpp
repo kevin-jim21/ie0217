@@ -25,47 +25,78 @@ void StartGame(Ahorcado* Game, std::string dict[15]) {
     // Colocar la palabra escogida en la estructura
     Game->word = dict[dictIndex];
 
+    // Limpieza del array antes de colocar caracteres
+    for (int i = 0; i < 25; ++i) {
+        Game->wordStatus[i] = '\0';
+    }
+
     // Inicializar estado de la palabra adivinada con guiones bajos
     for (int i = 0; i < selectedWord.length(); ++i) {
         Game->wordStatus[i] = '_';
     }
+
+    // Anadir caracter nulo para evitar problemas posteriormente
+    Game->wordStatus[selectedWord.length()] = '\0';
     
     // Inicializar en 0 la cantidad de intentos utilizados
     Game->usedAttemps = 0;
 }
 
 void GuessWord(Ahorcado* Game, char character) {
-    std::string wordStatusCast;
+    const char* wordArray;
+    int wordSize;
+    bool find;
+    bool repeated;
 
-    // Al utilizar el metodo find() de std::string, esta variable guarda la posicion donde se encontro el caracter
-    size_t pos = Game->word.find(character);
+    // Convertir la palabra que se debe adivinar en un arreglo de caracteres
+    wordArray = Game->word.c_str();
 
-    // Castear el arreglo de letras adivinadas
-    wordStatusCast = Game->wordStatus;
+    // Obtener el tamano de la palabra
+    wordSize = Game->word.length();
 
-    // Buscar el caracter ingresado dentro de la palabra
-    if (pos != std::string::npos) {
+    // Este valor indicara si se encontro al menos un caracter en el arreglo
+    find = false;
 
-        // Verificar si el caracter ya habia sido ingresado anteriormente
-        if (wordStatusCast.find(character) != std::string::npos) {
-            std::cout << "Esta letra ya había sido adivinada." << std::endl;
-        }
-        else {
-            std::cout << "¡Correcto! Esta letra está en la palabra." << std::endl;
+    // Este valor indicara si el caracter ya habia sido encontrado antes
+    repeated = false;
+
+    /* Buscar el caracter ingresado en el arreglo. El tamano de la palabra se
+    utiliza como condicion de parada para el bucle.*/
+    for (int i = 0; i < wordSize; ++i) {
+
+        if (character == wordArray[i]) {
             
-            /* Si la letra aun no habia sido adivinada, se iterara sobre toda la palabra
-            para obtener cada una de las posiciones en donde se encuentren las letras y
-            colocarlas en la variable wordStatus*/
-            while(pos != std::string::npos) {
-                Game->wordStatus[int(pos)] = character;
+            // Chequear si la letra ya habia sido adivinada, de ser así rompe el ciclo
+            if (character == Game->wordStatus[i]) {
+                find = true;
+                repeated = true;
 
-                // Saltar a la siguiente posicion para cada iteracion
-                pos = Game->word.find(character, pos + 1);
+                break;
+            }
+            else {
+                // Colocar la letra en el arreglo de letras adivinadas
+                Game->wordStatus[i] = character;
+
+                find = true;
             }
         }
+        else {
+            continue;
+        }
+    }
+
+    // Indicar al usuario si hay un acierto o no
+    if (find && !repeated) {
+        std::cout << "¡Correcto! La letra " << character << " está en la palabra." << std::endl;
+    }
+    else if (find && repeated) {
+        std::cout << "¡Ups! La letra "  << character << " ya había sido adivinada." << std::endl;
     }
     else {
-        std::cout << "¡Incorrecto! Esta letra no está en la palabra" << std::endl;
+        std::cout << "¡Incorrecto! La letra " << character << " no está en la palabra." << std::endl;
+
+        // Si aun no se llega al limite de intentos, se suma 1 y el juego sigue
+        Game->usedAttemps++;
     }
 }
 
@@ -78,7 +109,7 @@ int CheckGame(Ahorcado* Game) {
 
     // Si el string word se puede encontrar dentro de wordStatusCast, la palabra se adivino
     if(wordStatusCast == Game->word) {
-        std::cout << "¡Felicidades, has ganado!" << std::endl;
+        std::cout << "¡Felicidades, has ganado! La palabra era "<< Game->word << "." << std::endl;
 
         // Retorna 1 para comunicar en el main que ha terminado el juego
         return 1;
@@ -94,18 +125,15 @@ int CheckGame(Ahorcado* Game) {
 
             // Verificar si la palabra ingresada es igual a word
             if(lastChance == Game->word) {
-                std::cout << "¡Felicidades, has ganado en el último intento!" << std::endl;
+                std::cout << "¡Felicidades, has ganado en el último intento! La palabra era " << Game->word << "." << std::endl;
             }
             else {
-                std::cout << "¡Lo siento, has perdido!" << std::endl;
+                std::cout << "¡Lo siento, has perdido! La palabra era " << Game->word << "." << std::endl;
             }
-
             // Retorna 1 para comunicar en el main que ha terminado el juego
             return 1;
         }
         else {
-            // Si aun no se llega al limite de intentos, se suma 1 y el juego sigue
-            Game->usedAttemps++;
             
             // Retorna 0 para comunicar en el main que no ha terminado el juego
             return 0;

@@ -27,7 +27,7 @@ int main() {
     /* Mostrar menu al usario utilizando bucle para mostrar el menu hasta
     que el usuario introduzca una opcion valida*/
     do {
-        std::cout << "\n¡Bienvenido al juego Ahorcado! Ingresa una opción para continuar" << std::endl;
+        std::cout << "\n¡Bienvenido al juego Ahorcado! Ingresa una opción para continuar:" << std::endl;
         std::cout << "1. Elige la dificultad del juego" << std::endl;
         std::cout << "2. Inicia el juego" << std::endl;
         std::cout << "3. Agrega palabras al dicionario predeterminado" << std::endl;
@@ -41,7 +41,7 @@ int main() {
             case 1:
                 // Bucle para establecer la dificultad del juego
                 do {
-                    std::cout << "\nSelecciona una opción para establecer la dificultad del juego" << std::endl;
+                    std::cout << "\nSelecciona una opción para establecer la dificultad del juego:" << std::endl;
                     std::cout << "1. Fácil (7 intentos permitidos)" << std::endl;
                     std::cout << "2. Intermedio (5 intentos permitidos)" << std::endl;
                     std::cout << "3. Difícil (3 intentos permitidos)" << std::endl;
@@ -80,7 +80,7 @@ int main() {
                         std::cout << StructPointer->wordStatus[i] << " ";
                     }
 
-                    std::cout << "\nPor favor ingrese una letra" << std::endl;
+                    std::cout << "\nPor favor ingrese una letra." << std::endl;
                     std::cout << "Número máximo de intentos: " << StructPointer->maxAttemps << std::endl;
                     std::cout << "Número de intentos realizados: " << StructPointer->usedAttemps << std::endl;
                     
@@ -92,7 +92,7 @@ int main() {
                     // Llamar cada turno a la funcion que verifica si el juego termino
                     finish = CheckGame(StructPointer);
 
-                } while (finish =! 1);
+                } while (finish != 1);
                 
                 break;
             case 3:
