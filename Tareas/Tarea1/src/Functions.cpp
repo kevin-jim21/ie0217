@@ -18,7 +18,7 @@ void StartGame(Ahorcado* Game, std::string dict[15]) {
 
     /* Se obtiene un numero aleatorio que va a determinar cual palabra del
     diccionario va a ser utilizada para jugar*/
-    dictIndex = rand() % (14);
+    dictIndex = rand() % (15);
 
     selectedWord = dict[dictIndex];
 
@@ -57,7 +57,7 @@ void GuessWord(Ahorcado* Game, char character) {
             para obtener cada una de las posiciones en donde se encuentren las letras y
             colocarlas en la variable wordStatus*/
             while(pos != std::string::npos) {
-                Game->wordStatus[pos] = character;
+                Game->wordStatus[int(pos)] = character;
 
                 // Saltar a la siguiente posicion para cada iteracion
                 pos = Game->word.find(character, pos + 1);
@@ -69,7 +69,7 @@ void GuessWord(Ahorcado* Game, char character) {
     }
 }
 
-int ChechGame(Ahorcado* Game) {
+int CheckGame(Ahorcado* Game) {
     std::string wordStatusCast;
     std::string lastChance;
 
@@ -77,7 +77,7 @@ int ChechGame(Ahorcado* Game) {
     wordStatusCast = Game->wordStatus;
 
     // Si el string word se puede encontrar dentro de wordStatusCast, la palabra se adivino
-    if(wordStatusCast.find(Game->word) != std::string::npos) {
+    if(wordStatusCast == Game->word) {
         std::cout << "¡Felicidades, has ganado!" << std::endl;
 
         // Retorna 1 para comunicar en el main que ha terminado el juego
@@ -93,7 +93,7 @@ int ChechGame(Ahorcado* Game) {
             std::cin >> lastChance;
 
             // Verificar si la palabra ingresada es igual a word
-            if(lastChance.find(Game->word) != std::string::npos) {
+            if(lastChance == Game->word) {
                 std::cout << "¡Felicidades, has ganado en el último intento!" << std::endl;
             }
             else {
@@ -105,7 +105,7 @@ int ChechGame(Ahorcado* Game) {
         }
         else {
             // Si aun no se llega al limite de intentos, se suma 1 y el juego sigue
-            ++Game->usedAttemps;
+            Game->usedAttemps++;
             
             // Retorna 0 para comunicar en el main que no ha terminado el juego
             return 0;

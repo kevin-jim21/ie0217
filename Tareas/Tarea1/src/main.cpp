@@ -27,7 +27,7 @@ int main() {
     /* Mostrar menu al usario utilizando bucle para mostrar el menu hasta
     que el usuario introduzca una opcion valida*/
     do {
-        std::cout << "¡Bienvenido al juego Ahorcado! Ingresa una opción para continuar" << std::endl;
+        std::cout << "\n¡Bienvenido al juego Ahorcado! Ingresa una opción para continuar" << std::endl;
         std::cout << "1. Elige la dificultad del juego" << std::endl;
         std::cout << "2. Inicia el juego" << std::endl;
         std::cout << "3. Agrega palabras al dicionario predeterminado" << std::endl;
@@ -41,7 +41,7 @@ int main() {
             case 1:
                 // Bucle para establecer la dificultad del juego
                 do {
-                    std::cout << "Selecciona una opción para establecer la dificultad del juego" << std::endl;
+                    std::cout << "\nSelecciona una opción para establecer la dificultad del juego" << std::endl;
                     std::cout << "1. Fácil (7 intentos permitidos)" << std::endl;
                     std::cout << "2. Intermedio (5 intentos permitidos)" << std::endl;
                     std::cout << "3. Difícil (3 intentos permitidos)" << std::endl;
@@ -75,19 +75,22 @@ int main() {
                 do {
                     std::cout << "La palabra es: " << std::endl;
 
-                    // Bucle para mostrar el arreglo wordStatus
+                    // Bucle para mostrar el arreglo wordStatus al usuario
                     for (int i = 0; i < 25; ++i) {
                         std::cout << StructPointer->wordStatus[i] << " ";
                     }
 
                     std::cout << "\nPor favor ingrese una letra" << std::endl;
+                    std::cout << "Número máximo de intentos: " << StructPointer->maxAttemps << std::endl;
+                    std::cout << "Número de intentos realizados: " << StructPointer->usedAttemps << std::endl;
+                    
                     std::cin >> guessCharacter;
 
                     // Ingresar el caracter a la funcion para verificar si adivino
-                    void GuessWord(Ahorcado* StructPointer, char guessCharacter);
+                    GuessWord(StructPointer, guessCharacter);
 
                     // Llamar cada turno a la funcion que verifica si el juego termino
-                    finish = ChechGame(StructPointer);
+                    finish = CheckGame(StructPointer);
 
                 } while (finish =! 1);
                 
@@ -96,13 +99,19 @@ int main() {
                 
                 break;
             case 4:
+                // Mostrar el diccionario al usuario
+                std::cout << "\nEstas son las palabras que pueden aparecer en el juego: " << std::endl;
+
+                for (int j = 0; j < 15; ++j) {
+                    std::cout << j + 1 << ") " << dictionary[j] << std::endl;
+                }
                 
                 break;
             case 5:
                 
                 break;
             default:
-                std::cout << "Saliendo del juego..." << std::endl;
+                std::cout << "\nSaliendo del juego..." << std::endl;
                 break;
         }
 

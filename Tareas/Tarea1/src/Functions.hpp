@@ -25,6 +25,6 @@ void GuessWord(Ahorcado* Game, char character);
  * @param Game Estructura principal del juego.
  * @return Numero que indica si el juego termino o no.
 */
-int ChechGame(Ahorcado* Game);
+int CheckGame(Ahorcado* Game);
 
 #endif // FUNCTIONS_HPP
