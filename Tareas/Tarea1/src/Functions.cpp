@@ -19,6 +19,7 @@ en el headerfile para utilizar en el juego Ahorcado.*/
  * \ref Ahorcado.hpp
  * \ref Functions.hpp
  * \ref Functions.cpp
+ * \ref main.cpp
  */
 
 // Se incluyen las declaraciones de funciones hechas en Functions.hpp
