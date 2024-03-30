@@ -8,8 +8,8 @@
 #include "Functions.hpp"
 
 int main() {
-    int option;
-    int difficulty;
+    char option;
+    char difficulty;
     int dictSize;
     int finish;
     char guessCharacter;
@@ -46,7 +46,7 @@ int main() {
 
         // Acceder a cada una de las funcionalidades del juego
         switch(option) {
-            case 1:
+            case '1':
                 // Bucle para establecer la dificultad del juego
                 do {
                     std::cout << "\nSelecciona una opción para establecer la dificultad del juego:" << std::endl;
@@ -58,13 +58,13 @@ int main() {
 
                     // Ajustar la dificultad segun la escogencia del usuario
                     switch(difficulty) {
-                        case 1:
+                        case '1':
                             StructPointer->maxAttemps = 7;
                             break;
-                        case 2:
+                        case '2':
                             StructPointer->maxAttemps = 5;
                             break;
-                        case 3:
+                        case '3':
                             StructPointer->maxAttemps = 3;
                             break;
                         default:
@@ -72,10 +72,10 @@ int main() {
                             break;
                     }
 
-                } while (difficulty < 1 || difficulty > 3);
+                } while (difficulty != '1' && difficulty != '2' && difficulty != '3');
 
                 break;
-            case 2:
+            case '2':
                 // Iniciar el juego
                 StartGame(StructPointer, dictionary);
 
@@ -103,7 +103,7 @@ int main() {
                 } while (finish != 1);
                 
                 break;
-            case 3:
+            case '3':
                 // Preguntar al usuario por la palabra que quiere anadir
                 std::cout << "\nPor favor ingrese la palabra que desea añadir al juego." << std::endl;
                 std::cin >> newWord;
@@ -140,7 +140,7 @@ int main() {
 
                 
                 break;
-            case 4:
+            case '4':
                 // Mostrar el diccionario al usuario
                 std::cout << "\nEstas son las palabras que pueden aparecer en el juego: " << std::endl;
 
@@ -149,7 +149,7 @@ int main() {
                 }
                 
                 break;
-            case 5:
+            case '5':
                 std::cout << "\nSaliendo del juego..." << std::endl;
 
                 break;
@@ -159,5 +159,5 @@ int main() {
                 break;
         }
 
-    } while (option != 5);
+    } while (option != '5');
 }
