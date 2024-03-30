@@ -1,6 +1,26 @@
 /* En este archivo se definen cada una de las funciones que fueron declaradas
 en el headerfile para utilizar en el juego Ahorcado.*/
 
+/*! \mainpage Documentación del Juego Ahorcado
+ *
+ * Aquí se pueden encontrar los elementos más importantes para 
+ * comprender la elaboración de esta tarea.
+ * 
+ * 
+ * Estructuras:
+ * \ref Ahorcado
+ * 
+ * Funciones:
+ * \ref StartGame
+ * \ref GuessWord
+ * \ref CheckGame
+ * 
+ * Archivos de cabecera y código fuente:
+ * \ref Ahorcado.hpp
+ * \ref Functions.hpp
+ * \ref Functions.cpp
+ */
+
 // Se incluyen las declaraciones de funciones hechas en Functions.hpp
 #include "Functions.hpp"
 
