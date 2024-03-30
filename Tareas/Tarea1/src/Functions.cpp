@@ -9,16 +9,20 @@ en el headerfile para utilizar en el juego Ahorcado.*/
 #include <stdlib.h>
 #include <time.h>
 
-void StartGame(Ahorcado* Game, std::string dict[15]) {
+void StartGame(Ahorcado* Game, std::vector<std::string> dict) {
     int dictIndex;
+    int dictSize;
     std::string selectedWord;
 
     // Generar semilla para obtener numeros aleatorios
     srand(time(NULL));
 
-    /* Se obtiene un numero aleatorio que va a determinar cual palabra del
-    diccionario va a ser utilizada para jugar*/
-    dictIndex = rand() % (15);
+    // Obtener la cantidad de palabras del diccionario
+    dictSize = dict.size();
+
+    /* Se obtiene un numero aleatorio que va a corresponder a la posicion de la
+    palabra del diccionario con la que se va a jugar*/
+    dictIndex = rand() % (dictSize);
 
     selectedWord = dict[dictIndex];
 

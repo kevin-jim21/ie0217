@@ -11,7 +11,7 @@ utilizadas a lo largo del juego ahorcado.*/
  * @param Game Estructura principal del juego.
  * @param dict Diccionario de palabras utilizado en el juego.
 */
-void StartGame(Ahorcado* Game, std::string dict[15]);
+void StartGame(Ahorcado* Game, std::vector<std::string> dict);
 
 /**
  * @brief Funcion para ingresar letras y verificar si el usuario adivino.

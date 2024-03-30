@@ -5,6 +5,7 @@ durante el desarrollo del juego. */
 #define AHORCADO_HPP
 
 #include <iostream>
+#include <vector>
 #include <string>
 
 /**

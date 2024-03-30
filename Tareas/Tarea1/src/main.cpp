@@ -2,14 +2,19 @@
 
 // Se incluyen headerfiles de la estructura y funciones utilizados para el juego
 #include <iostream>
+#include <vector>
+#include <string>
 #include "Ahorcado.hpp"
 #include "Functions.hpp"
 
 int main() {
     int option;
     int difficulty;
+    int dictSize;
     int finish;
     char guessCharacter;
+    bool repeatedWord;
+    std::string newWord;
     Ahorcado Struct;
     Ahorcado *StructPointer;
 
@@ -21,8 +26,11 @@ int main() {
 
     /* Dicionario de palabras predeterminado, se dejan espacios vacíos por si el usuario
     desea añadir más palabras para jugar*/
-    std::string dictionary[15] = {"blanco", "bajo", "vaca", "verde", "helado", "preocupado",
-    "puerta", "dulce", "pollo", "nube", "estrella", "nervioso", "camino", "dibujo", "elefante"};
+    std::vector<std::string> dictionary({"blanco", "bajo", "vaca", "verde", "helado", "preocupado",
+    "puerta", "dulce", "pollo", "nube", "estrella", "nervioso", "camino", "dibujo", "elefante"});
+
+    // Obtener el tamano del diccionario
+    dictSize = dictionary.size();
 
     /* Mostrar menu al usario utilizando bucle para mostrar el menu hasta
     que el usuario introduzca una opcion valida*/
@@ -96,22 +104,58 @@ int main() {
                 
                 break;
             case 3:
+                // Preguntar al usuario por la palabra que quiere anadir
+                std::cout << "\nPor favor ingrese la palabra que desea añadir al juego." << std::endl;
+                std::cin >> newWord;
+
+                // Esta variable indicara si se encontro la palabra en el diccionario
+                repeatedWord = false;
+
+                // Verificar que esta palabra no esta en el diccionario
+                for (int j = 0; j < dictSize; ++j) {
+
+                    if (newWord == dictionary[j]) {
+                        repeatedWord = true;
+
+                        // Romper el ciclo si ya encontro la palabra
+                        break;
+                    }
+                    else {
+                        continue;
+                    }
+                }
+
+                // Anadir la palabra al diccionario si no esta repetida
+                if (!repeatedWord) {
+                    dictionary.push_back(newWord);
+
+                    // Actualizar el tamaño del diccionario
+                    dictSize++;
+
+                    std::cout << "La palabra " << newWord << " se ha registrado con éxito.";
+                }
+                else {
+                    std::cout << "La palabra " << newWord << " ya había sido registrada.";
+                }
+
                 
                 break;
             case 4:
                 // Mostrar el diccionario al usuario
                 std::cout << "\nEstas son las palabras que pueden aparecer en el juego: " << std::endl;
 
-                for (int j = 0; j < 15; ++j) {
-                    std::cout << j + 1 << ") " << dictionary[j] << std::endl;
+                for (int k = 0; k < dictSize; ++k) {
+                    std::cout << k + 1 << ") " << dictionary[k] << std::endl;
                 }
                 
                 break;
             case 5:
-                
+                std::cout << "\nSaliendo del juego..." << std::endl;
+
                 break;
             default:
-                std::cout << "\nSaliendo del juego..." << std::endl;
+                std::cout << "\nEsta opción no es válida, inténtelo de nuevo..." << std::endl;
+
                 break;
         }
 
