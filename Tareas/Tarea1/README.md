@@ -10,6 +10,9 @@ g++ -o main.exe src/main.cpp src/Functions.cpp
 
 **Nota: este comando de compilación fue utilizado en Linux y para ser empleado correctamente debe ubicarse en la ruta ie0217/Tareas/Tarea1 del repositorio.**
 
+*A partir del siguiente link se puede ingresar a la página web en la que está alojada la documentación:*
+
+https://beamish-brigadeiros-435be5.netlify.app/
 
 ## Parte Teórica
 
