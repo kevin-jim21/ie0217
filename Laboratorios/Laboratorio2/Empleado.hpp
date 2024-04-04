@@ -19,6 +19,9 @@ class Empleado {
 
         // Declaracion de una funcion virtual
         virtual ~Empleado(){}
+
+        /* Al crearse un metodo virtual puro, siempre que se hereda es necesario sobreescribir
+        el metodo en la clase derivada.*/
         virtual double calcularPago() const = 0;  // Metodo virtual puro
         virtual void mostrarDetalles() const;  // Metodo virtual comun
 };
