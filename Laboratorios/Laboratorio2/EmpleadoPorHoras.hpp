@@ -11,9 +11,7 @@ class EmpleadoPorHoras : public Empleado {
 
     public:
         EmpleadoPorHoras(std::string _nombre, int _edad, double _salario, int _horasTrabajadas);
-        
-        // Como fue declarado como un metodo virtual puro, se debe sobreescribir en la clase derivada
-        double calcularPago() const override;
+        double calcularPago() const override;  // Aca tambien se reescribe el metodo virtual puro
 };
 
 #endif // EMPLEADOPORHORAS_HPP

@@ -5,13 +5,13 @@
 
 #include "Empleado.hpp"
 
-/* Al heredar de manera publica se mantienen los metodos y atributos en el 
-estado (publico, protegido o privado) en el que fueron designados en la clase original*/
+/* Al heredar de manera publica se mantienen los metodos y atributos en el mismo
+estado (publico, protegido o privado) en el que fueron designados en la clase original.*/
 class EmpleadoAsalariado : public Empleado {
 
     public:
         EmpleadoAsalariado(std::string _nombre, int _edad, double _salario);
-        double calcularPago() const override;  // Se sobreescribe el metodo virtual puro de la clase base
+        double calcularPago() const override;  // Se reescribe el metodo virtual puro de la clase base
 };
 
 #endif  // EMPLEADOASALARIADO_HPP

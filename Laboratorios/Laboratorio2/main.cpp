@@ -1,4 +1,4 @@
-// Archivo principal para el programa de empleados
+// Archivo main para el programa de empleados
 
 #include <iostream>
 #include "EmpleadoAsalariado.hpp"
