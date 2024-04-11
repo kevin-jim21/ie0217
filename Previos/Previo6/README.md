@@ -4,3 +4,5 @@
 
 * g++ -o .\BubbleSort.exe .\BubbleSort.cpp
 * .\BubbleSort.exe
+* g++ -o .\OptimizedBubbleSort.exe .\OptimizedBubbleSort.cpp
+* .\OptimizedBubbleSort.exe
