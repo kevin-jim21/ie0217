@@ -41,6 +41,6 @@ int main() {
     // Llamar a la funcion para ordenar el array
     bubbleSort(data, size);
 
-    cout << "Sorted Array in Ascending Orden:\n";
+    cout << "Array en orden ascendente:\n";
     printArray(data, size);
 }

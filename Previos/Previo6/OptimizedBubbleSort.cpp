@@ -13,7 +13,7 @@ void bubbleSort(int array[], int size) {
     // Loop para acceder a todos los elementos del array
     for (int step = 0; step < (size-1); ++step) {
         int swapped = 0;
-        
+
         // Loop para comparar los elementos adyacentes
         for (int i = 0; i < (size - step - 1); ++i){
 
@@ -49,6 +49,6 @@ int main() {
     // Llamar a la funcion para ordenar el array
     bubbleSort(data, size);
 
-    cout << "Sorted Array in Ascending Orden:\n";
+    cout << "Array en orden ascendente:\n";
     printArray(data, size);
 }
