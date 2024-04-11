@@ -6,3 +6,8 @@
 * .\BubbleSort.exe
 * g++ -o .\OptimizedBubbleSort.exe .\OptimizedBubbleSort.cpp
 * .\OptimizedBubbleSort.exe
+* g++ -o .\SelectionSort.exe .\SelectionSort.cpp
+* .\SelectionSort.exe
+* g++ -o .\InsertionSort.exe .\InsertionSort.cpp
+* .\InsertionSort.exe  
+
