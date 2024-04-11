@@ -27,7 +27,7 @@ void selectionSort(int array[], int size) {
 
         /* Al recorrer el array, se compara el elemento actual con el elemento que esta
         desginado como minimo, si es menor intercambian los valores y continua el bucle*/ 
-        for (int i = step + i; i < size; i++) {
+        for (int i = step + 1; i < size; i++) {
             if (array[i] < array [min_idx])
                 min_idx = i;
         }

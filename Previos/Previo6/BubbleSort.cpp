@@ -8,10 +8,10 @@ using namespace std;
 void bubbleSort(int array[], int size) {
 
     // Loop para acceder a cada elemento del archivo
-    for (int step = 0; step < size; ++step) {
+    for (int step = 1; step < size; ++step) {  // CORRECCION: step debe empezar en 1
 
         // Loop para comparar los elementos adyacentes
-        for (int i = 0; i < size - step; ++i) {
+        for (int i = 0; i < (size - step); ++i) {
 
             if (array[i] > array[i + 1]) {
                 
