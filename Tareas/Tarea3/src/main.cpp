@@ -29,7 +29,29 @@
 using namespace std;
 
 int main() {
+    HashTable* Contact;
+    NodeCloud* CloudContact;
+    int size = 0;  // Reservar memoria inicial
     char option;
+
+    // Se reserva memoria para HashTable
+    Contact = (HashTable*)malloc(size * sizeof(HashTable));
+    if (Contact == NULL) {
+        cout << "Fallo en la reserva de memoria dinámica" << endl;
+        exit(1);
+    }
+
+    // Se reserva memoria dinamica para los valores de la estructura
+    Contact->name = (char**)malloc(size * sizeof(char*));
+    if (Contact == NULL) {
+        cout << "Fallo en la reserva de memoria dinámica" << endl;
+        exit(1);
+    }
+    Contact->number = (int*)malloc(size * sizeof(int));
+    if (Contact == NULL) {
+        cout << "Fallo en la reserva de memoria dinámica" << endl;
+        exit(1);
+    }
 
     // Desplegar menu
     do {
@@ -46,16 +68,16 @@ int main() {
 
         switch (option) {
         case '1' :
-            
+            //void addContact(HashTable* Contact);
             break;
         case '2' :
-            
+            //void removeContact(HashTable* Contact);
             break;
         case '3' :
-            
+            //void printAll(NodeCloud* CloudContact);
             break;
         case '4' :
-            
+            //void printLocal(HashTable* Contact);
             break;
         case '5' :
             cout << "Saliendo del programa..." << endl;
@@ -68,6 +90,11 @@ int main() {
         cin.ignore();  // Limpiar la entrada antes de colocar una opcion
 
     } while (option != '5');
+
+    // Liberar memoria
+    free(Contact->number);
+    free(Contact->name);
+    free(Contact);
 
     return 0;
 }

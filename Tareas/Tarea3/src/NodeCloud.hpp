@@ -34,7 +34,7 @@ class NodeCloud {
     private:
         int nodeIdx;  // Numero de nodo
         HashTable* contactPtr;  // Puntero a la estructura
-        std::string* nameCloud;  // Alojar el nombre del contacto
+        char** nameCloud;  // Alojar el nombre del contacto
         int* numberCloud;
         NodeCloud* next;  // Puntero al siguiente nodo
 

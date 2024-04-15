@@ -30,7 +30,7 @@
 #include <iostream>
 
 struct HashTable {
-    std::string* name;  // Este va a ser el array de keys
+    char** name;  // Este va a ser el array de keys
     int* number;  // Este va a ser el array de valores
 };
 

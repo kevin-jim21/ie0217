@@ -27,7 +27,26 @@
 
 #include "Functions.hpp"
 
-void addContact(HashTable* Contact) {};
-void removeContact(HashTable* Contact) {};
+void addContact(HashTable* Contact) {
+    std::string newName;
+    int newNumber;
+
+    std::cout << "Ingrese el nombre del nuevo contacto" << std::endl;
+    std::getline(std::cin, newName);
+
+    std::cout << "Ingrese el número del nuevo contacto" << std::endl;
+    std::cin >> newNumber;
+
+    // Primero debe buscar en el array de nombres si ya existe un contacto con este nombre
+
+};
+
+void removeContact(HashTable* Contact) {
+    std::string deleteName;
+
+    std::cout << "Ingrese el nombre del contacto que desea eliminar" << std::endl;
+    std::getline(std::cin, deleteName);
+};
+
 void printAll(NodeCloud* CloudContact) {};
 void printLocal(HashTable* Contact) {};
