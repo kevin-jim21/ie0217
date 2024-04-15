@@ -1,6 +1,6 @@
 /**
- * @file NodeCloud.cpp
- * @brief En este archivo se definen los metodos de la clase NodeCloud.
+ * @file Functions.cpp
+ * @brief En este archivo se definen las funciones que se van a utilizar en el main.
  *
  * MIT License
  *
@@ -25,16 +25,9 @@
  * SOFTWARE.
  */
 
-#include "NodeCloud.hpp"
+#include "Functions.hpp"
 
-// Constructor de NodeCloud
-NodeCloud::NodeCloud(int _nodeIdx, HashTable* _contactPtr, NodeCloud* _next) :
-    nodeIdx(_nodeIdx), contactPtr(_contactPtr), next(_next) {}
-
-void NodeCloud::putNameContact() {
-    nameCloud = contactPtr->name;
-};
-
-void NodeCloud::putNumberContact() {
-    numberCloud = contactPtr->number;
-}
+void addContact(HashTable* Contact) {};
+void removeContact(HashTable* Contact) {};
+void printAll(NodeCloud* CloudContact) {};
+void printLocal(HashTable* Contact) {};

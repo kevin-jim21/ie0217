@@ -27,3 +27,7 @@
 
 #include "NodeCloud.hpp"
 
+void addContact(HashTable* Contact);  //  Esta va a ser la HashFunction
+void removeContact(HashTable* Contact);  // Eliminar contactos
+void printAll(NodeCloud* CloudContact);  // Mostrar almacenamiento y nube
+void printLocal(HashTable* Contact);  // Imprimir los contactos que estan en el dispositivo
