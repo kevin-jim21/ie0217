@@ -42,11 +42,12 @@ int main() {
     }
 
     // Se reserva memoria dinamica para los valores de la estructura
-    Contact->name = (char**)malloc(size * sizeof(char*));
+    Contact->name = (char**)malloc(size * sizeof(char*));  // Puntero hacia el array principal
     if (Contact == NULL) {
         cout << "Fallo en la reserva de memoria dinámica" << endl;
         exit(1);
     }
+
     Contact->number = (int*)malloc(size * sizeof(int));
     if (Contact == NULL) {
         cout << "Fallo en la reserva de memoria dinámica" << endl;
@@ -68,16 +69,16 @@ int main() {
 
         switch (option) {
         case '1' :
-            //void addContact(HashTable* Contact);
+            addContact(Contact, &size);
             break;
         case '2' :
-            //void removeContact(HashTable* Contact);
+            removeContact(Contact, &size);
             break;
         case '3' :
-            //void printAll(NodeCloud* CloudContact);
+            printAll(CloudContact, size);
             break;
         case '4' :
-            //void printLocal(HashTable* Contact);
+            printLocal(Contact, size);
             break;
         case '5' :
             cout << "Saliendo del programa..." << endl;

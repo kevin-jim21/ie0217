@@ -26,27 +26,81 @@
  */
 
 #include "Functions.hpp"
+#include <cstring>
 
-void addContact(HashTable* Contact) {
-    std::string newName;
+void addContact(HashTable* Contact, int* size) {
+    char* newName;
     int newNumber;
+    int i = 0;  // Contador para bucle while
+    bool find = false;  // Booleano que indica si se encontro o no el contacto
+    size_t lenName; // Reservar espacio en cada slot del array de strings
 
+    std::cin.ignore();  // Limpiar entrada
+
+    newName = new char[20];  // Reservar la memoria para la entrada
+    
     std::cout << "Ingrese el nombre del nuevo contacto" << std::endl;
-    std::getline(std::cin, newName);
+    std::cin.getline(newName, 20);
 
     std::cout << "Ingrese el número del nuevo contacto" << std::endl;
     std::cin >> newNumber;
 
     // Primero debe buscar en el array de nombres si ya existe un contacto con este nombre
+    while (i < *size) {
+        if (strcmp(newName, Contact->name[i]) == 0) {
+            // Si se encontro una vez, romper el ciclo y colocar find como verdadero
+            find = true;
+            break;
+        }
+        else {
+            continue;
+        }
+
+        ++i;  // Aumentar contador
+    }
+
+    // Actuar de acuerdo a si se encontro o no el nombre del contacto
+    if (find) {
+        std::cout << "Ya existe un contacto con este nombre. Por favor, intente poner un nuevo nombre." << std::endl;
+    }
+    else {
+        // Agregar contacto al HashTable
+        (*size)++;  // Aumentar el tamano del bloque de memoria para hacer realloc
+        lenName = strlen(newName);
+
+        Contact = (HashTable*)realloc(Contact, *size * sizeof(HashTable));  // Modificar el bloque de memoria del HashTable
+        if (Contact == NULL) {
+        std::cout << "Fallo en la reserva de memoria dinámica AAAA" << std::endl;
+        exit(1);
+        }
+        Contact->name = (char**)realloc(Contact->name, *size * sizeof(char*));  // Modificar el bloque de memoria del array name
+        if (Contact->name == NULL) {
+        std::cout << "Fallo en la reserva de memoria dinámica BBB" << std::endl;
+        exit(1);
+        }
+        Contact->name[*size - 1] = (char*)malloc(lenName * sizeof(char) + 1);  // Reservar memoria para el nombre dentro del array
+        if (Contact->name[*size - 1] == NULL) {
+        std::cout << "Fallo en la reserva de memoria dinámica CCCC" << std::endl;
+        exit(1);
+        }
+        Contact->number = (int*)realloc(Contact->number, *size * sizeof(int));  // Reservar memoria para el nombre dentro del array
+        if (Contact->number == NULL) {
+        std::cout << "Fallo en la reserva de memoria dinámica DDDD" << std::endl;
+        exit(1);
+        }
+        // Anadir los datos los arrays
+        std::strcpy(Contact->name[*size - 1], newName);
+        Contact->number[*size - 1] = newNumber;
+    }
 
 };
 
-void removeContact(HashTable* Contact) {
+void removeContact(HashTable* Contact, int* size) {
     std::string deleteName;
 
     std::cout << "Ingrese el nombre del contacto que desea eliminar" << std::endl;
     std::getline(std::cin, deleteName);
 };
 
-void printAll(NodeCloud* CloudContact) {};
-void printLocal(HashTable* Contact) {};
+void printAll(NodeCloud* CloudContact, int size) {};
+void printLocal(HashTable* Contact, int size) {};
