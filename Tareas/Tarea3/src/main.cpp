@@ -72,13 +72,13 @@ int main() {
             addContact(&Contact, CloudContact,&size);
             break;
         case '2' :
-            removeContact(Contact, CloudContact, &size);
+            removeContact(&Contact, CloudContact, &size);
             break;
         case '3' :
             printAll(CloudContact, size);
             break;
         case '4' :
-            printLocal(Contact, size);
+            printLocal(&Contact, size);
             break;
         case '5' :
             cout << "Saliendo del programa..." << endl;
