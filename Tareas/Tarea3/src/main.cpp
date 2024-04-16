@@ -69,10 +69,10 @@ int main() {
 
         switch (option) {
         case '1' :
-            addContact(Contact, &size);
+            addContact(&Contact, CloudContact,&size);
             break;
         case '2' :
-            removeContact(Contact, &size);
+            removeContact(Contact, CloudContact, &size);
             break;
         case '3' :
             printAll(CloudContact, size);

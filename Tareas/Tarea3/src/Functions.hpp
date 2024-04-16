@@ -30,8 +30,8 @@
 
 #include "NodeCloud.hpp"
 
-void addContact(HashTable* Contact, int* size);  //  Esta va a ser la HashFunction
-void removeContact(HashTable* Contact, int* size);  // Eliminar contactos
+void addContact(HashTable** Contact, NodeCloud* CloudContact, int* size);  //  Esta va a ser la HashFunction
+void removeContact(HashTable* Contact, NodeCloud* CloudContact, int* size);  // Eliminar contactos
 void printAll(NodeCloud* CloudContact, int size);  // Mostrar almacenamiento y nube
 void printLocal(HashTable* Contact, int size);  // Imprimir los contactos que estan en el dispositivo
 
