@@ -75,7 +75,7 @@ void quickSort(int arr[], int low, int high) {
 void generateRandomArray(int arr[], int n) {
     srand(time(0));  // Epoc time
     for (int i = 0; i < n; ++i) {
-        arr[i] = rand() % 1000;
+        arr[i] = rand() % 10000;
     }
     /* Los arrays siempre se envian en seco, ya que el arreglo lleva
     consigo mismo la referencia. */
@@ -90,8 +90,21 @@ void measuringSortingTime(void (*sortingAlgorithm)(int[], int), int arr[], int n
 
     // Tambien se puede hacer con auto, auto significa detectar el tipo de variable que debe ser
     // basado en lo que le asigno
-    std::chrono::microseconds duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    // auto_duration = duration_cast<microseconds>(stop - start);
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    cout << "Tiempo de " << algorithmName << ": " << duration.count() << " microsegundos" << endl;
+}
+
+// Primer argumento es un puntero a una funcion que recibe un array de enteros y un entero
+void measuringSortingTime(void (*sortingAlgorithm)(int[], int, int), int arr[], int low, int high, string algorithmName) {
+
+    high_resolution_clock::time_point start = high_resolution_clock::now();
+    sortingAlgorithm(arr, low, high);  // Le envia al puntero de la funcion las entradas propias de esta nueva funcion
+    high_resolution_clock::time_point stop = high_resolution_clock::now();
+
+    // Tambien se puede hacer con auto, auto significa detectar el tipo de variable que debe ser
+    // basado en lo que le asigno
+    auto duration = duration_cast<microseconds>(stop - start);
 
     cout << "Tiempo de " << algorithmName << ": " << duration.count() << " microsegundos" << endl;
 }
@@ -101,10 +114,16 @@ int main() {
     int arr[SIZE];
 
     generateRandomArray(arr, SIZE);
-
     measuringSortingTime(bubbleSort, arr, SIZE, "Bubble Sort");
+
+    generateRandomArray(arr, SIZE);
     measuringSortingTime(selectionSort, arr, SIZE, "Selection Sort");
+
+    generateRandomArray(arr, SIZE);
     measuringSortingTime(insertionSort, arr, SIZE, "Insertion Sort");
+    
+    generateRandomArray(arr, SIZE);
+    measuringSortingTime(quickSort, arr, 0, SIZE - 1, "Quick Sort");
 
     return 0;
 }
