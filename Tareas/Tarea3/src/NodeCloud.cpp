@@ -28,13 +28,19 @@
 #include "NodeCloud.hpp"
 
 // Constructor de NodeCloud
-NodeCloud::NodeCloud(int _nodeIdx, HashTable* _contactPtr, NodeCloud* _next) :
-    nodeIdx(_nodeIdx), contactPtr(_contactPtr), next(_next) {}
+NodeCloud::NodeCloud(int* _nodeIdx, HashTable** _contactPtr) :
+    nodeIdx(_nodeIdx), contactPtr(_contactPtr) {}
 
 void NodeCloud::putNameContact() {
-    nameCloud = contactPtr->name;
+    nameCloud = (*contactPtr)->name[*nodeIdx - 1];
 };
 
 void NodeCloud::putNumberContact() {
-    numberCloud = contactPtr->number;
-}
+    numberCloud = (*contactPtr)->number[*nodeIdx - 1];
+};
+
+void NodeCloud::showContact() {
+
+    std::cout << "\n" << nameCloud << std::endl;
+    std::cout << numberCloud << std::endl;
+};

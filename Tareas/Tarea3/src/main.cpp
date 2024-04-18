@@ -34,6 +34,9 @@ int main() {
     int size = 0;  // Reservar memoria inicial
     char option;
 
+    // Elemento inicial de la lista entrelazada
+    CloudContact = nullptr;
+
     // Se reserva memoria para HashTable
     Contact = (HashTable*)malloc(size * sizeof(HashTable));
     if (Contact == NULL) {
@@ -56,13 +59,13 @@ int main() {
 
     // Desplegar menu
     do {
-        cout << "********** CONTACTOS **********" << endl;
+        cout << "\n\n********** CONTACTOS **********" << endl;
         cout << "Por favor seleccione una opción." << endl;
         cout << "1) Agregar contacto." << endl;
         cout << "2) Eliminar contacto." << endl;
         cout << "3) Lista de contactos (local y almacenamiento en la nube)." << endl;
         cout << "4) Lista de contactos (local)." << endl;
-        cout << "5) Salir." << endl;
+        cout << "5) Salir." << endl << endl;
 
         // Ingresar opcion
         cin >> option;
@@ -75,7 +78,7 @@ int main() {
             removeContact(&Contact, CloudContact, &size);
             break;
         case '3' :
-            printAll(CloudContact, size);
+            printAll(&Contact, CloudContact, size);
             break;
         case '4' :
             printLocal(&Contact, size);

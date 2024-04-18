@@ -32,15 +32,16 @@
 
 class NodeCloud {
     private:
-        int nodeIdx;  // Numero de nodo
-        HashTable* contactPtr;  // Puntero a la estructura
-        char** nameCloud;  // Alojar el nombre del contacto
-        int* numberCloud;
-        NodeCloud* next;  // Puntero al siguiente nodo
+        int* nodeIdx;  // Numero de nodo
+        HashTable** contactPtr;  // Puntero a la estructura
+        char* nameCloud;  // Alojar el nombre del contacto
+        int numberCloud;
 
     public:
+        NodeCloud* next;  // Puntero al siguiente nodo
+
         // Declarar un constructor
-        NodeCloud(int nodeIdx, HashTable* contactPtr, NodeCloud* next);
+        NodeCloud(int* nodeIdx, HashTable** contactPtr);
 
         // Declarar un destructor
         ~NodeCloud(){}
@@ -49,6 +50,7 @@ class NodeCloud {
         struct por medio del puntero y colocarlos en el nodo de la lista entrelazada*/
         void putNameContact();
         void putNumberContact();
+        void showContact();
 };
 
 
