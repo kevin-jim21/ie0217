@@ -48,7 +48,7 @@ class NodeCloud {
 
     public:
         char* nameCloud;  ///< Nombre almacenado.
-        NodeCloud* next;  // Puntero al siguiente nodo de la lista entrelazada.
+        NodeCloud* next;  ///< Puntero al siguiente nodo de la lista entrelazada.
 
         /**
         * @brief Constructor de la clase NodeCloud.
