@@ -28,30 +28,55 @@
 #ifndef NODECLOUD_HPP
 #define NODECLOUD_HPP
 
+#include <cstring>
 #include "HashTable.hpp"
 
+/**
+ * @class NodeCloud
+ * @brief Clase para instanciar nodos de la lista entrelazada.
+ * 
+ * Esta clase se encarga de crear todos aquellos nodos los cuales tendran
+ * copias de los datos de la HashTable y se almacenaran en una nube. Todos
+ * ellos seran entrelazados de forma lineal y tendran un puntero para acceder
+ * al nombre y número telefónico que le corresponde en la HashTable.
+*/
 class NodeCloud {
     private:
-        int* nodeIdx;  // Numero de nodo
-        HashTable** contactPtr;  // Puntero a la estructura
-        char* nameCloud;  // Alojar el nombre del contacto
-        int numberCloud;
+        int* nodeIdx;  ///< Nodo asignado a la HashTable.
+        HashTable** contactPtr;  ///< Puntero con el que se accede a la HashTable.
+        int numberCloud;  ///< Número de telefóno almacenado.
 
     public:
-        NodeCloud* next;  // Puntero al siguiente nodo
+        char* nameCloud;  ///< Nombre almacenado.
+        NodeCloud* next;  // Puntero al siguiente nodo de la lista entrelazada.
 
-        // Declarar un constructor
+        /**
+        * @brief Constructor de la clase NodeCloud.
+        * 
+        * @param nodeIdx Index con el que se va a relacionar el nodo individualmente con la HashTable.
+        * @param contactPtr Doble puntero que puede acceder a los arrays de nombres y números telefónicos de la HashTable.
+        */
         NodeCloud(int* nodeIdx, HashTable** contactPtr);
 
-        // Declarar un destructor
+        /**
+        * @brief Destructor de la clase NodeCloud.
+        */
         ~NodeCloud(){}
 
-        /* Metodos para acceder a los nombres y numeros de los contactos en el
-        struct por medio del puntero y colocarlos en el nodo de la lista entrelazada*/
+        /**
+        * @brief Accede al puntero contactPtr y extrae el nombre del contacto que corresponde a su index.
+        */
         void putNameContact();
+
+        /**
+        * @brief Accede al puntero contactPtr y extrae el número del contacto que corresponde a su index.
+        */
         void putNumberContact();
+
+        /**
+        * @brief Muestran los datos que contiene el nodo; de esta forma el usuario puede ver su almacenamiento cloud.
+        */
         void showContact();
 };
-
 
 #endif  // NODECLOUD_HPP

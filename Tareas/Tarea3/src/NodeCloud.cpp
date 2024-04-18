@@ -32,7 +32,9 @@ NodeCloud::NodeCloud(int* _nodeIdx, HashTable** _contactPtr) :
     nodeIdx(_nodeIdx), contactPtr(_contactPtr) {}
 
 void NodeCloud::putNameContact() {
-    nameCloud = (*contactPtr)->name[*nodeIdx - 1];
+    nameCloud = strdup((*contactPtr)->name[*nodeIdx - 1]);
+    /* Se utiliza strdup para que al eliminar el contacto del almacenamiento, su nombre
+    pueda seguir apareciendo en la nube (evitar error).*/
 };
 
 void NodeCloud::putNumberContact() {

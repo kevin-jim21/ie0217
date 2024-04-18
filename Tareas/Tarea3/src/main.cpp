@@ -37,7 +37,7 @@ int main() {
     // Elemento inicial de la lista entrelazada
     CloudContact = nullptr;
 
-    // Se reserva memoria para HashTable
+    // Se reserva memoria dinámica para la estructura HashTable
     Contact = (HashTable*)malloc(size * sizeof(HashTable));
     if (Contact == NULL) {
         cout << "Fallo en la reserva de memoria dinámica" << endl;
@@ -46,20 +46,20 @@ int main() {
 
     // Se reserva memoria dinamica para los valores de la estructura
     Contact->name = (char**)malloc(size * sizeof(char*));  // Puntero hacia el array principal
-    if (Contact == NULL) {
+    if (Contact->name == NULL) {
         cout << "Fallo en la reserva de memoria dinámica" << endl;
         exit(1);
     }
 
     Contact->number = (int*)malloc(size * sizeof(int));
-    if (Contact == NULL) {
+    if (Contact->number == NULL) {
         cout << "Fallo en la reserva de memoria dinámica" << endl;
         exit(1);
     }
 
     // Desplegar menu
     do {
-        cout << "\n\n********** CONTACTOS **********" << endl;
+        cout << "\n\n******************** CONTACTOS ********************" << endl;
         cout << "Por favor seleccione una opción." << endl;
         cout << "1) Agregar contacto." << endl;
         cout << "2) Eliminar contacto." << endl;
@@ -78,9 +78,11 @@ int main() {
             removeContact(&Contact, CloudContact, &size);
             break;
         case '3' :
+            sortContacts(&Contact, CloudContact, size);
             printAll(&Contact, CloudContact, size);
             break;
         case '4' :
+            sortContacts(&Contact, CloudContact, size);
             printLocal(&Contact, size);
             break;
         case '5' :
@@ -95,7 +97,7 @@ int main() {
 
     } while (option != '5');
 
-    // Liberar memoria
+    // Liberar memoria reservada al inicio del scope.
     free(Contact->number);
     free(Contact->name);
     free(Contact);

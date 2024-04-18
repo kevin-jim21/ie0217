@@ -1,6 +1,6 @@
 /**
  * @file HashTable.hpp
- * @brief En este headerfile se declara la estructura que va a contener la "lista" dinámica de contactos
+ * @brief En este headerfile se declara la estructura que va a contener la "lista" dinámica de contactos.
  *
  * MIT License
  *
@@ -29,9 +29,17 @@
 
 #include <iostream>
 
+/**
+ * @brief: HashTable para almacenar contactos
+ * 
+ * En esta estructura se encuentran dos arrays que trabajaran en conjunto para
+ * actuar como una HashTable. La memoria de ambos arrays va a ser modificada en
+ * tiempo de ejecución, ya que el objetivo principal de este programa es ser
+ * lo más eficiente posible.
+*/
 struct HashTable {
-    char** name;  // Este va a ser el array de keys
-    int* number;  // Este va a ser el array de valores
+    char** name;  ///< Puntero doble representa el array dinámico donde se almacenan los nombres de los contactos.
+    int* number;  ///< Puntero que representa el array dinámico para guarda el número de los contactos.
 };
 
 #endif  // HASHTABLE_HPP

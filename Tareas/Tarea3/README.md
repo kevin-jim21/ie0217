@@ -2,6 +2,19 @@
 
 En esta carpeta se pueden encontrar todos los archivos de codigo fuente utilizados para desarrollar la parte práctica. Además, en esta nota se encuentran las respuestas a la parte teórica de la evaluación y las instrucciones de compilación para el código fuente.
 
+# Parte Práctica
+
+*A continuación, se muestran los comandos que se deben utilizar para compilar y ejecutar (respectivamente) los archivos de código fuente del programa "Gestión de contactos":*
+
++ g++ -o main.exe src/NodeCloud.cpp src/Functions.cpp src/main.cpp
++ ./main.exe
+
+**Nota: este comando de compilación fue utilizado en Linux y para ser empleado correctamente debe ubicarse en la ruta ie0217/Tareas/Tarea3 del repositorio.**
+
+*A partir del siguiente link se puede ingresar a la página web en la que está alojada la documentación:*
+
+
+
 # Parte Teórica
 
 *1. ¿Qué es un algoritmo y cuáles son sus características principales?*
