@@ -1,20 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <string>
+// Archivo main del programa "Biblioteca" de la sesion 7
 
-class Libro {
-public:
-    std::string titulo;
-    std::string autor;
-    int anioPublicacion;
-
-    Libro(std::string t, std::string a, int anio) : titulo(t), autor(a), anioPublicacion(anio) {}
-
-    bool operator<(const Libro& l) const {
-        return anioPublicacion < l.anioPublicacion;
-    }
-};
+#include "Libro.hpp"
 
 class Biblioteca {
 private:
