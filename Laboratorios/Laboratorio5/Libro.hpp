@@ -18,7 +18,7 @@ public:
 
     Libro(std::string t, std::string a, int anio);  // Para ingresar un libro, se necesita especificar su titulo, autor y anio
 
-    bool operator<(const Libro& l) const;
+    bool operator<(const Libro& l) const;  // Compara libros por los anios de publicacion, necesario para el metodo ordenarLibrosPorAnio de Biblioteca
 };
 
 #endif  // LIBRO_HPP
