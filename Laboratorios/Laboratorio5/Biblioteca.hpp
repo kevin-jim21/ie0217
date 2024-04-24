@@ -10,10 +10,10 @@ private:
     std::vector<Libro> libros;
 
 public:
-    void agregarLibro(const Libro& libro);
-    void mostrarLibros();
-    void ordenarLibrosPorAnio();
-    std::vector<Libro>::iterator buscarLibroPorTitulo(const std::string& titulo);
+    void agregarLibro(const Libro& libro);  // Metodo para agregar libro a la bilbioteca
+    void mostrarLibros();  // Metodo para mostrar todos los libros de la biblioteca
+    void ordenarLibrosPorAnio();  // Ordenar los libros de la biblioteca por anio de publicacion
+    std::vector<Libro>::iterator buscarLibroPorTitulo(const std::string& titulo);  // Buscar un libro en la biblioteca por titulo
     std::vector<Libro>::iterator end();
 };
 

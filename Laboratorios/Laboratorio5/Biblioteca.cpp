@@ -7,6 +7,9 @@ void Biblioteca::agregarLibro(const Libro& libro) {
 }
 
 void Biblioteca::mostrarLibros() {
+    std::cout << "BIENVENIDO A LA BIBLIOTECA \"SU LIBRITO\"" << std::endl << std::endl;
+    std::cout << "Lista de libros disponibles en esta biblioteca: " << std::endl << std::endl;
+
     for (const auto& libro : libros) {
         std::cout << libro.titulo << ", " << libro.autor << ", " << libro.anioPublicacion << std::endl;
     }

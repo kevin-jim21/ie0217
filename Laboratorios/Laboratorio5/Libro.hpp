@@ -16,7 +16,7 @@ public:
     std::string autor;
     int anioPublicacion;
 
-    Libro(std::string t, std::string a, int anio);
+    Libro(std::string t, std::string a, int anio);  // Para ingresar un libro, se necesita especificar su titulo, autor y anio
 
     bool operator<(const Libro& l) const;
 };

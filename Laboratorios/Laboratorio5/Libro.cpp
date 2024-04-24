@@ -8,4 +8,3 @@ Libro::Libro(std::string t, std::string a, int anio) : titulo(t), autor(a), anio
 bool Libro::operator<(const Libro& l) const {
     return anioPublicacion < l.anioPublicacion;
 }
-
