@@ -1,0 +1,5 @@
+# Comandos de compilación y ejecución para los archivos de código fuente
+
+Para este Previo se realizó un Makefile para cada programa utilizado de ejemplo en la sesión correspondiente; en el directorio src1 se encuentra el ejemplo de expresiones regulares, en el directorio src2 se encuentra el ejemplo del programa gestor de información de estudiantes y en src3 se encuentra el ejemplo del gestor de biblioteca. Para compilar los archivos de código fuente se puede utilizar el comando "mingw32-make" al estar colocado en la respectiva carpeta, mientras que para ejecutar se pueden utilizar los siguientes comandos respectivamente: ".\regex_example.exe", ".\gestion_estudiantes.exe", ".\gestion_biblioteca.exe".
+
+*Nota: Como es posible notar por el uso del backslash, estos comandos de compilación y ejecución fueron utilizados en Windows. Además, el orden en el que se muestran los comandos corresponde al orden en el que se encuentran los códigos en la presentación que corresponde a la sesión 9.*
