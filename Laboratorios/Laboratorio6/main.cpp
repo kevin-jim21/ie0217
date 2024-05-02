@@ -1,3 +1,6 @@
+/* Archivo main de programa que realiza un analisis estadistico de una cantidad de datos n recibida
+por medio de un vector de la STL de C++*/
+
 #include "Statistics.hpp"
 
 int main() {
@@ -12,7 +15,7 @@ int main() {
         /***********************/
         std::vector<double> doubleData = {1.5, 2.5, 3.5, 4.5, 5.5};  // Crear un vector de datos tipo double
 
-        Statistics<double> statsDouble(doubleData);  // Analiss de datos tipo double
+        Statistics<double> statsDouble(doubleData);  // Analisis de datos tipo double
 
         std::cout << "Media de doubleData: " << statsDouble.mean() << std::endl;
         std::cout << "Desviacion estandar de doubleData: " << statsDouble.standardDeviation() << std::endl;
@@ -22,7 +25,7 @@ int main() {
         Statistics<int> statsEmpty(emptyData);  // Enviar a analizar una lista de datos vacios
 
     } catch (const std::invalid_argument& e) {
-        std::cerr << "Excepcion encontrada: " << e.what() << std::endl;
+        std::cerr << "Excepcion encontrada: " << e.what() << std::endl;  // Utilizar salida cerr para dar mensaje de error
     }
 
     return 0;
