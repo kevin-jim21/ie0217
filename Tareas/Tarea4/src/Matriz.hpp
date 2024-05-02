@@ -30,10 +30,12 @@
 
 #include <vector>
 
-template <class Tipo>
+template <typename Tipo>
 class Matriz {
     private:
         std::vector<std::vector<Tipo>> valores;  // Matriz sera un vector de vectores
+        int dimFilas;
+        int dimColumnas;
 
     public:
         // Constructor
@@ -44,11 +46,15 @@ class Matriz {
 
         // Metodo para definir las dimensiones de la matriz
         void setDimensiones(int filas, int columnas) {
-            valores.resize(filas);  // Ajustar la cantidad de filas
+            // Dar valor a los atributos de la matriz
+            dimFilas = filas;
+            dimColumnas = columnas;
+
+            valores.resize(dimFilas);  // Ajustar la cantidad de filas
 
             // Ajustar la cantidad de columnas
-            for (int i = 0; i < filas; ++i) {
-                valores[i].resize(columnas);
+            for (int i = 0; i < dimFilas; ++i) {
+                valores[i].resize(dimColumnas);
             }
         };
         
@@ -58,7 +64,7 @@ class Matriz {
             std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
 
             // Repetir el proceso para cada fila
-            for (int i = 0; i < filas; ++i) {
+            for (int i = 0; i < dimFilas; ++i) {
                 j = 0;  // Inicializar contador de columna
 
                 // Recorrer cada valor
@@ -70,6 +76,97 @@ class Matriz {
                 }
             }
         };
+
+        // Sobrecarga de operadores
+
+        // Metodo para sumar dos matrices
+        std::vector<std::vector<Tipo>> operator+ (const Matriz& matrizB) {
+            std::vector<std::vector<Tipo>> resultado;  // Crear la matriz resultado
+
+            /* Asumiendo que ya se verifico que ambas matrices cumplen las condiciones para ser sumadas,
+            se asignan los valores de la matriz A a la matriz resultado*/
+            resultado = this->valores;
+
+            // Sumar valores de la matriz B a la matriz resultado
+            std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
+
+            // Recorrer filas
+            for (int i = 0; i < dimFilas; ++i) {
+                j = 0;  // Inicializar contador de columna
+
+                // Recorrer cada valor de la fila
+                for (itr = resultado[i].begin(); itr != resultado[i].end(); ++itr) {
+                    *itr += matrizB->valores[i][j];
+
+                    ++j;  // Subir contador de columna
+                }
+            }
+            return resultado;
+        }
+
+        // Metodo para restar dos matrices
+        std::vector<Tipo> operator- (const Matriz& matrizB) {
+            std::vector<std::vector<Tipo>> resultado;  // Crear la matriz resultado
+
+            /* Asumiendo que ya se verifico que ambas matrices cumplen las condiciones para ser sumadas,
+            se asignan los valores de la matriz A a la matriz resultado*/
+            resultado = this->valores;
+
+            // Sumar valores de la matriz B a la matriz resultado
+            std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
+
+            // Recorrer filas
+            for (int i = 0; i < dimFilas; ++i) {
+                j = 0;  // Inicializar contador de columna
+
+                // Recorrer cada valor de la fila
+                for (itr = resultado[i].begin(); itr != resultado[i].end(); ++itr) {
+                    *itr -= matrizB->valores[i][j];
+
+                    ++j;  // Subir contador de columna
+                }
+            }
+            return resultado;
+        }
+
+        std::vector<Tipo> operator* (const Matriz& matrizB) {
+            std::vector<std::vector<Tipo>> resultado;  // Crear la matriz resultado
+            int dimFilasMult;
+            int dimColumnasMult;
+            std::vector<Tipo>::iterator itr;  // Recorrer columnas para la matriz resultado
+            int sum;  // Sumatoria con la que se obtiene el resultado de cada suboperacion
+
+            // Primero se deben definir las dimensiones de la matriz resultado
+            dimFilasMult = this->dimFilas;
+            dimColumnasMult = matrizB->dimColumnas;
+
+            // Inicializar la matriz resultado
+            resultado.resize(dimFilasMult);  // Ajustar la cantidad de filas
+
+            // Ajustar la cantidad de columnas
+            for (int i = 0; i < dimFilas; ++i) {
+                resultado[i].resize(dimColumnasMult);
+            }
+
+            // Recorrer la matriz resultado, asignando los valores uno a uno
+            for (int j = 0; j < dimFilasMult; ++j) {
+
+                for (itr = resultado[i].begin(); itr != resultado[i].end(); ++itr) {
+                    sum = 0;  // Iniciar el resultado de una coord de la matriz
+
+                    // Recorrer filas de la primera matriz y columnas de la segunda matriz
+                    for (int k = 0; k < this->dimFilas; ++k) {
+                        sum += this->[j][k] * matrizB->[k][j];
+                        
+                    }
+
+                    resultado[i][itr] = sum;  // Guardar el resultado en la matriz resultado
+                }
+            }
+
+            return resultado;
+
+        }
 };
 
 #endif
