@@ -1,6 +1,6 @@
 /**
  * @file Matriz.hpp
- * @brief Definición de la template class "Matriz" en donde se define el tamaño de la matriz e introducen sus valores
+ * @brief Definición de la template class "Matriz" en donde se define el tamaño de la matriz e introducen sus valores.
  *
  * MIT License
  *
@@ -39,7 +39,7 @@ class Matriz {
 
     public:
         // Constructor
-        Matriz() : {}
+        Matriz(std::vector<std::vector<Tipo>> valores) : valores(valores) {}
 
         // Destructor
         ~Matriz() {}
@@ -61,7 +61,7 @@ class Matriz {
         // Metodo para introducir los valores a la matriz
         void llenarMatriz() {
             int j;  // Contador para indicar al usuario las coordenadas del valor que esta ingresando 
-            std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
+            typename std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
 
             // Repetir el proceso para cada fila
             for (int i = 0; i < dimFilas; ++i) {
@@ -69,8 +69,8 @@ class Matriz {
 
                 // Recorrer cada valor
                 for (itr = valores[i].begin(); itr != valores[i].end(); ++itr) {
-                    std::cout << "Ingrese el valor " << i + 1 << j + 1 << ":" << std::endl;
-                    std::getline(std::cin, valores[i][itr]);  // Colocar el valor en la matriz
+                    std::cout << "Ingrese el valor " << i + 1 << " " << j + 1 << ":" << std::endl;
+                    std::cin >> *itr;  // Colocar el valor en la matriz
 
                     ++j;  // Subir contador de columna
                 }
@@ -81,14 +81,14 @@ class Matriz {
 
         // Metodo para sumar dos matrices
         std::vector<std::vector<Tipo>> operator+ (const Matriz& matrizB) {
-            std::vector<std::vector<Tipo>> resultado;  // Crear la matriz resultado
+            std::vector<std::vector<Tipo>> resultado;
+            int j;
 
-            /* Asumiendo que ya se verifico que ambas matrices cumplen las condiciones para ser sumadas,
-            se asignan los valores de la matriz A a la matriz resultado*/
+            // Suponiendo que ya se verifico que ambas matrices cumplen las condiciones para ser sumadas
             resultado = this->valores;
 
             // Sumar valores de la matriz B a la matriz resultado
-            std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
+            typename std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
 
             // Recorrer filas
             for (int i = 0; i < dimFilas; ++i) {
@@ -96,24 +96,25 @@ class Matriz {
 
                 // Recorrer cada valor de la fila
                 for (itr = resultado[i].begin(); itr != resultado[i].end(); ++itr) {
-                    *itr += matrizB->valores[i][j];
+                    *itr += (&matrizB)->valores[i][j];
 
                     ++j;  // Subir contador de columna
                 }
             }
             return resultado;
-        }
+        };
 
         // Metodo para restar dos matrices
-        std::vector<Tipo> operator- (const Matriz& matrizB) {
-            std::vector<std::vector<Tipo>> resultado;  // Crear la matriz resultado
 
-            /* Asumiendo que ya se verifico que ambas matrices cumplen las condiciones para ser sumadas,
-            se asignan los valores de la matriz A a la matriz resultado*/
+        std::vector<std::vector<Tipo>> operator- (const Matriz& matrizB) {
+            std::vector<std::vector<Tipo>> resultado;
+            int j;
+
+            // Suponiendo que ya se verifico que ambas matrices cumplen las condiciones para ser restadas
             resultado = this->valores;
 
             // Sumar valores de la matriz B a la matriz resultado
-            std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
+            typename std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
 
             // Recorrer filas
             for (int i = 0; i < dimFilas; ++i) {
@@ -121,24 +122,26 @@ class Matriz {
 
                 // Recorrer cada valor de la fila
                 for (itr = resultado[i].begin(); itr != resultado[i].end(); ++itr) {
-                    *itr -= matrizB->valores[i][j];
+                    *itr -= (&matrizB)->valores[i][j];
 
                     ++j;  // Subir contador de columna
                 }
             }
             return resultado;
-        }
-
-        std::vector<Tipo> operator* (const Matriz& matrizB) {
+        };
+        
+        // Metodo para multiplicar matrices
+        std::vector<std::vector<Tipo>> operator* (const Matriz& matrizB) {
             std::vector<std::vector<Tipo>> resultado;  // Crear la matriz resultado
             int dimFilasMult;
             int dimColumnasMult;
-            std::vector<Tipo>::iterator itr;  // Recorrer columnas para la matriz resultado
-            int sum;  // Sumatoria con la que se obtiene el resultado de cada suboperacion
+            typename std::vector<Tipo>::iterator itr;  // Recorrer columnas para la matriz resultado
+            Tipo sum;  // Sumatoria con la que se obtiene el resultado de cada suboperacion
+            int k;  // Contador para hacer iteracion fila * columna
 
             // Primero se deben definir las dimensiones de la matriz resultado
             dimFilasMult = this->dimFilas;
-            dimColumnasMult = matrizB->dimColumnas;
+            dimColumnasMult = (&matrizB)->dimColumnas;
 
             // Inicializar la matriz resultado
             resultado.resize(dimFilasMult);  // Ajustar la cantidad de filas
@@ -150,23 +153,53 @@ class Matriz {
 
             // Recorrer la matriz resultado, asignando los valores uno a uno
             for (int j = 0; j < dimFilasMult; ++j) {
+                k = 0;
 
-                for (itr = resultado[i].begin(); itr != resultado[i].end(); ++itr) {
+                for (itr = resultado[j].begin(); itr != resultado[j].end(); ++itr) {
                     sum = 0;  // Iniciar el resultado de una coord de la matriz
 
-                    // Recorrer filas de la primera matriz y columnas de la segunda matriz
-                    for (int k = 0; k < this->dimFilas; ++k) {
-                        sum += this->[j][k] * matrizB->[k][j];
+                    // Recorrer filas de la primera matriz y columnas de la segunda matrizs
+                    for (int l = 0; l < (&matrizB)->dimFilas; ++l) {
+                        sum += this->valores[j][l] * (&matrizB)->valores[l][k];
                         
                     }
 
-                    resultado[i][itr] = sum;  // Guardar el resultado en la matriz resultado
+                    *itr = sum;  // Guardar el resultado en la matriz resultado
+                    ++k;
                 }
             }
 
             return resultado;
 
-        }
+        };
+};
+
+// Especializacion de metodo llenarMatriz para caso de matriz con numeros complejos
+template<>
+void Matriz<std::complex<double>>::llenarMatriz() {
+    double real;
+    double imaginario;
+    int j;  // Contador para indicar al usuario las coordenadas del valor que esta ingresando 
+    std::vector<std::complex<double>>::iterator itr;  // Crear un iterador para recorrer las filas
+
+    // Repetir proceso para cada fila
+    for(int i = 0; i < dimFilas; ++i) {
+        j = 0;  // Contador de columna
+
+        // Recorrer cada valor
+            for (itr = valores[i].begin(); itr != valores[i].end(); ++itr) {
+                std::cout << "Ingrese el valor real de " << i + 1 << " " << j + 1 << ":" << std::endl;
+                std::cin >> real;
+
+                std::cout << "Ingrese el valor imaginario de " << i + 1 << " " << j + 1 << ":" << std::endl;
+                std::cin >> imaginario;
+
+                *itr = std::complex<double>(real, imaginario);  // Parsear y anadir el valor a la matriz
+
+                ++j;  // Subir contador de columna
+            }
+
+    }
 };
 
 #endif
