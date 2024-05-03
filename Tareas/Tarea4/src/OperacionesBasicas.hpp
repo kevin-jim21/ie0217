@@ -1,6 +1,6 @@
 /**
  * @file OperacionesBasicas.hpp
- * @brief
+ * @brief Headerfile en donde se define una clase especificamente para comprobar si se pueden realizar la operacion solicitada por el usuario.
  *
  * MIT License
  *
@@ -41,7 +41,7 @@ class OperacionesBasicas {
             try {
                 // Atrapar el error
                 if ((a.dimFilas != b.dimFilas) || (a.dimColumnas != b.dimColumnas)) {
-                    throw std::runtime_error("No se puede realizar esta operación ya que las matrices no cuentan con las mismas dimensiones");
+                    throw std::runtime_error("No se puede realizar esta operación ya que las matrices no cuentan con las mismas dimensiones.");
                 }
 
                 // Este codigo no se ejecutara si se encuentra el error
@@ -53,8 +53,24 @@ class OperacionesBasicas {
             }
         }
 
-        //template<typename Template>
-        //void validarMultiplicacion(Matriz<Template>&a, Matriz<Template>&b) {}
+        template<typename Template>
+        int validarMultiplicacion(Matriz<Template>&a, Matriz<Template>&b) {
+            /* Para que dos matrices se puedan multiplicar, la cantidad de columnas de la primera matriz
+            debe ser igual a la cantidad de filas de la segunda matriz*/
+            try {
+                // Atrapar el error
+                if (a.dimColumnas != b.dimFilas) {
+                    throw std::runtime_error("No se puede realizar esta operación ya que las matrices no cuentan con las dimensiones adecuadas.");
+                }
+
+                // ESte codigo no se ejecutara si se encuentra el error
+                return 1;  // Indica que se puede hacer la operacion
+            }
+            catch(const std::exception& e) {
+                std::cerr << e.what() << std::endl;  // Dar el mensaje de error
+                return 0;  // No se puede hacer la operacion              
+            }
+        }
 };
 
 #endif

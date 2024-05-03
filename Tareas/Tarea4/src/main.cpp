@@ -27,8 +27,7 @@
 #include <iostream>
 #include <string>
 #include <complex>
-#include "Matriz.hpp"
-#include "OperacionesBasicas.hpp"
+#include "Funciones.hpp"
 
 using namespace std;
 
@@ -37,9 +36,7 @@ int main() {
     int columnasMatrizA;
     int filasMatrizB;
     int columnasMatrizB;
-    int validacion;
     char tipo;
-    char operacion;
     vector<vector<int>> intValoresA;
     vector<vector<int>> intValoresB;
     vector<vector<int>> intValoresC;
@@ -88,227 +85,13 @@ int main() {
 
         switch (tipo) {
             case 'i':
-                cout << "\nPrimera matriz" << endl;
-                intMatrizA.setDimensiones(filasMatrizA, columnasMatrizA);
-                intMatrizA.llenarMatriz();
-
-                cout << "\nSegunda matriz" << endl;
-                intMatrizB.setDimensiones(filasMatrizB, columnasMatrizB);
-                intMatrizB.llenarMatriz();
-
-                // Elegir operacion
-                do {
-                    cout << "Seleccione la operación que desea aplicar: " << endl;
-                    cout << "s) A + B = C" << endl;
-                    cout << "r) A - B = c" << endl;
-                    cout << "m) A * B = c" << endl;
-                    cin >> operacion;
-
-                    cout << "Aplicando operación..." << endl;
-                    switch (operacion) {
-                        case 's':
-                            validacion = opBasicas.validarSumaResta(*ptrIntMatrizA, *ptrIntMatrizB);
-
-                            if (validacion == 1) {
-                                intValoresC = intMatrizA.operator+(*ptrIntMatrizB);
-
-                                cout << "C = " << endl;
-                                for(int i = 0; i < filasMatrizA; ++i) {
-                                    cout << "|";
-
-                                    for(int j = 0; j < columnasMatrizA; ++j) {
-                                    cout << intValoresC[i][j] << " ";
-                                    }
-                                cout << "|" << endl;
-                            }
-                            }
-
-                            break;
-                        case 'r':
-                            intValoresC = intMatrizA.operator-(*ptrIntMatrizB);
-
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
-
-                                for(int j = 0; j < columnasMatrizA; ++j) {
-                                    cout << intValoresC[i][j] << " ";
-                                }
-                                cout << "|" << endl;
-
-                            }
-                            break;
-                        case 'm':
-                            intValoresC = intMatrizA.operator*(*ptrIntMatrizB);
-
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
-
-                                for(int j = 0; j < columnasMatrizB; ++j) {
-                                    cout << intValoresC[i][j] << " ";
-                                }
-                                cout << "|" << endl;
-
-                            }
-
-                            break;
-                        default:
-                            cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
-                            break;
-                    }
-
-                } while (operacion != 's' && operacion != 'r' && operacion != 'm');
-
+                operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrIntMatrizA, *ptrIntMatrizB, intValoresC, opBasicas);
                 break;
             case 'f':
-                cout << "\nPrimera matriz" << endl;
-                floatMatrizA.setDimensiones(filasMatrizA, columnasMatrizA);
-                floatMatrizA.llenarMatriz(); 
-
-                cout << "\nSegunda matriz" << endl;
-                floatMatrizB.setDimensiones(filasMatrizB, columnasMatrizB);
-                floatMatrizB.llenarMatriz();
-
-                // Elegir operacion
-                do {
-                    cout << "Seleccione la operación que desea aplicar: " << endl;
-                    cout << "s) A + B = C" << endl;
-                    cout << "r) A - B = c" << endl;
-                    cout << "m) A * B = c" << endl;
-                    cin >> operacion;
-
-                    cout << "Aplicando operación..." << endl;
-                    switch (operacion) {
-                        case 's':
-                            validacion = opBasicas.validarSumaResta(*ptrFloatMatrizA, *ptrFloatMatrizB);
-
-                            if(validacion == 1) {
-                                floatValoresC = floatMatrizA.operator+(*ptrFloatMatrizB);
-
-                                cout << "C = " << endl;
-                                for(int i = 0; i < filasMatrizA; ++i) {
-                                    cout << "|";
-
-                                    for(int j = 0; j < columnasMatrizA; ++j) {
-                                        cout << floatValoresC[i][j] << " ";
-                                    }
-
-                                cout << "|" << endl;
-                                }
-                            }
-                            
-                            break;
-                        case 'r':
-                            floatValoresC = floatMatrizA.operator-(*ptrFloatMatrizB);
-
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
-
-                                for(int j = 0; j < columnasMatrizA; ++j) {
-                                    cout << floatValoresC[i][j] << " ";
-                                }
-                                cout << "|" << endl;
-
-                            }
-                            break;
-                        case 'm':
-                            floatValoresC = floatMatrizA.operator*(*ptrFloatMatrizB);
-
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
-
-                                for(int j = 0; j < columnasMatrizB; ++j) {
-                                    cout << floatValoresC[i][j] << " ";
-                                }
-                                cout << "|" << endl;
-
-                            }
-
-                            break;
-                        default:
-                            cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
-                            break;
-                    }
-
-                } while (operacion != 's' && operacion != 'r' && operacion != 'm');           
-
+                operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrFloatMatrizA, *ptrFloatMatrizB, floatValoresC, opBasicas);
                 break;
             case 'c':
-                cout << "\nPrimera matriz" << endl;
-                complexMatrizA.setDimensiones(filasMatrizA, columnasMatrizA);
-                complexMatrizA.llenarMatriz();
-
-                cout << "\nSegunda matriz" << endl;
-                complexMatrizB.setDimensiones(filasMatrizB, columnasMatrizB);
-                complexMatrizB.llenarMatriz();
-
-                // Elegir operacion
-                do {
-                    cout << "Seleccione la operación que desea aplicar: " << endl;
-                    cout << "s) A + B = C" << endl;
-                    cout << "r) A - B = c" << endl;
-                    cout << "m) A * B = c" << endl;
-                    cin >> operacion;
-
-                    cout << "Aplicando operación..." << endl;
-                    switch (operacion) {
-                        case 's':
-                            validacion = opBasicas.validarSumaResta(*ptrComplexMatrizA, *ptrComplexMatrizB);
-
-                            if(validacion == 1) {
-                                complexValoresC = complexMatrizA.operator+(*ptrComplexMatrizB);
-
-                                cout << "C = " << endl;
-                                for(int i = 0; i < filasMatrizA; ++i) {
-                                    cout << "|";
-
-                                    for(int j = 0; j < columnasMatrizA; ++j) {
-                                        cout << complexValoresC[i][j] << " ";
-                                    }
-                                cout << "|" << endl;
-                                }
-                            }
-
-                            break;
-                        case 'r':
-                            complexValoresC = complexMatrizA.operator-(*ptrComplexMatrizB);
-
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
-
-                                for(int j = 0; j < columnasMatrizA; ++j) {
-                                    cout << complexValoresC[i][j] << " ";
-                                }
-                                cout << "|" << endl;
-
-                            }
-                            break;
-                        case 'm':
-                            complexValoresC = complexMatrizA.operator*(*ptrComplexMatrizB);
-
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
-
-                                for(int j = 0; j < columnasMatrizB; ++j) {
-                                    cout << complexValoresC[i][j] << " ";
-                                }
-                                cout << "|" << endl;
-
-                            }
-
-                            break;
-                        default:
-                            cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
-                            break;
-                    }
-
-                } while (operacion != 's' && operacion != 'r' && operacion != 'm');
-
+                operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrComplexMatrizA, *ptrComplexMatrizB, complexValoresC, opBasicas);
                 break;
             default:
                 cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
