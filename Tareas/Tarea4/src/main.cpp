@@ -28,7 +28,7 @@
 #include <string>
 #include <complex>
 #include "Matriz.hpp"
-
+#include "OperacionesBasicas.hpp"
 
 using namespace std;
 
@@ -37,6 +37,7 @@ int main() {
     int columnasMatrizA;
     int filasMatrizB;
     int columnasMatrizB;
+    int validacion;
     char tipo;
     char operacion;
     vector<vector<int>> intValoresA;
@@ -50,13 +51,17 @@ int main() {
     vector<vector<complex<double>>> complexValoresC;
     Matriz<int> intMatrizA(intValoresA);
     Matriz<int> intMatrizB(intValoresB);
+    Matriz<int>* ptrIntMatrizA = &intMatrizA;
     Matriz<int>* ptrIntMatrizB = &intMatrizB;
     Matriz<float> floatMatrizA(floatValoresA);
     Matriz<float> floatMatrizB(floatValoresB);
+    Matriz<float>* ptrFloatMatrizA = &floatMatrizA;
     Matriz<float>* ptrFloatMatrizB = &floatMatrizB;
     Matriz<complex<double>> complexMatrizA(complexValoresA);
     Matriz<complex<double>> complexMatrizB(complexValoresB);
+    Matriz<complex<double>>* ptrComplexMatrizA = &complexMatrizA;
     Matriz<complex<double>>* ptrComplexMatrizB = &complexMatrizB;
+    OperacionesBasicas opBasicas;
 
     cout << "**********CALCULADORA DE MATRICES**********" << endl;
 
@@ -102,17 +107,22 @@ int main() {
                     cout << "Aplicando operación..." << endl;
                     switch (operacion) {
                         case 's':
-                            intValoresC = intMatrizA.operator+(*ptrIntMatrizB);
+                            validacion = opBasicas.validarSumaResta(*ptrIntMatrizA, *ptrIntMatrizB);
 
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
+                            if (validacion == 1) {
+                                intValoresC = intMatrizA.operator+(*ptrIntMatrizB);
 
-                                for(int j = 0; j < columnasMatrizA; ++j) {
+                                cout << "C = " << endl;
+                                for(int i = 0; i < filasMatrizA; ++i) {
+                                    cout << "|";
+
+                                    for(int j = 0; j < columnasMatrizA; ++j) {
                                     cout << intValoresC[i][j] << " ";
-                                }
+                                    }
                                 cout << "|" << endl;
                             }
+                            }
+
                             break;
                         case 'r':
                             intValoresC = intMatrizA.operator-(*ptrIntMatrizB);
@@ -171,17 +181,23 @@ int main() {
                     cout << "Aplicando operación..." << endl;
                     switch (operacion) {
                         case 's':
-                            floatValoresC = floatMatrizA.operator+(*ptrFloatMatrizB);
+                            validacion = opBasicas.validarSumaResta(*ptrFloatMatrizA, *ptrFloatMatrizB);
 
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
+                            if(validacion == 1) {
+                                floatValoresC = floatMatrizA.operator+(*ptrFloatMatrizB);
 
-                                for(int j = 0; j < columnasMatrizA; ++j) {
-                                    cout << floatValoresC[i][j] << " ";
-                                }
+                                cout << "C = " << endl;
+                                for(int i = 0; i < filasMatrizA; ++i) {
+                                    cout << "|";
+
+                                    for(int j = 0; j < columnasMatrizA; ++j) {
+                                        cout << floatValoresC[i][j] << " ";
+                                    }
+
                                 cout << "|" << endl;
+                                }
                             }
+                            
                             break;
                         case 'r':
                             floatValoresC = floatMatrizA.operator-(*ptrFloatMatrizB);
@@ -240,17 +256,22 @@ int main() {
                     cout << "Aplicando operación..." << endl;
                     switch (operacion) {
                         case 's':
-                            complexValoresC = complexMatrizA.operator+(*ptrComplexMatrizB);
+                            validacion = opBasicas.validarSumaResta(*ptrComplexMatrizA, *ptrComplexMatrizB);
 
-                            cout << "C = " << endl;
-                            for(int i = 0; i < filasMatrizA; ++i) {
-                                cout << "|";
+                            if(validacion == 1) {
+                                complexValoresC = complexMatrizA.operator+(*ptrComplexMatrizB);
 
-                                for(int j = 0; j < columnasMatrizA; ++j) {
-                                    cout << complexValoresC[i][j] << " ";
-                                }
+                                cout << "C = " << endl;
+                                for(int i = 0; i < filasMatrizA; ++i) {
+                                    cout << "|";
+
+                                    for(int j = 0; j < columnasMatrizA; ++j) {
+                                        cout << complexValoresC[i][j] << " ";
+                                    }
                                 cout << "|" << endl;
+                                }
                             }
+
                             break;
                         case 'r':
                             complexValoresC = complexMatrizA.operator-(*ptrComplexMatrizB);

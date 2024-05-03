@@ -172,6 +172,9 @@ class Matriz {
             return resultado;
 
         };
+
+        // Declaracion de funciones amigas para poder validar las operaciones
+        friend class OperacionesBasicas;
 };
 
 // Especializacion de metodo llenarMatriz para caso de matriz con numeros complejos
