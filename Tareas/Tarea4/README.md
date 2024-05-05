@@ -2,6 +2,15 @@
 
 En esta carpeta se pueden encontrar todos los archivos de código fuente utilizados para desarrollar la parte práctica. Además, en esta nota se encuentran las respuestas a la parte teórica de la evaluación y las instrucciones de compilación para el código fuente.
 
+## Parte Práctica
+
+*A continuación, se muestran los comandos que se deben utilizar para compilar y ejecutar (respectivamente) los archivos de código fuente del programa "Gestión de contactos":*
+
++ make
++ ./calculadoraMatrices.exe
+
+**Nota: este comando de ejecución del makefile fue empleado en Linux, para ejecutarlo en windows se debe utilizar el comando wingw32-make. Para ser empleado correctamente debe ubicarse en la ruta ie0217/Tareas/Tarea4 del repositorio.**
+
 ## Parte Teórica
 
 ### Templates
