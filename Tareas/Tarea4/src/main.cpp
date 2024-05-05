@@ -61,6 +61,7 @@ int main() {
     Matriz<complex<double>>* ptrComplexMatrizA = &complexMatrizA;
     Matriz<complex<double>>* ptrComplexMatrizB = &complexMatrizB;
     OperacionesBasicas opBasicas;
+    srand(time(0));  // Generar semilla
 
     // Bucle para no salir del menu hasta que la opcion sea salir
     do {
@@ -127,6 +128,20 @@ int main() {
                 }
                 break;
             case '5':
+                switch (tipo) {
+                    case 'i':
+                        mostrarMatrices(*ptrIntMatrizA, *ptrIntMatrizB);
+                        break;
+                    case 'f':
+                        mostrarMatrices(*ptrFloatMatrizA, *ptrFloatMatrizB);
+                        break;
+                    case 'c':
+                        mostrarMatrices(*ptrComplexMatrizA, *ptrComplexMatrizB);
+                        break;
+                    default:
+                        cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
+                        break;
+                }               
                 break;
             case '6':
                 switch (tipo) {
@@ -140,7 +155,7 @@ int main() {
                         operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrComplexMatrizA, *ptrComplexMatrizB, complexValoresC, opBasicas, operacion);
                         break;
                     default:
-                        cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
+                        cout << "Aún no se ha seleccionado el tipo de datos con el que se desea hacer la operación." << endl;
                         break;
                 }
                 break;

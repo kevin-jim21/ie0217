@@ -32,6 +32,8 @@
 #include <stdexcept>
 #include <string>
 #include <sstream>
+#include <cstdlib>
+#include <ctime>
 
 template <typename Tipo>
 class Matriz {
@@ -109,6 +111,35 @@ class Matriz {
                     *itr = verificarIngreso;
                     ++j;  // Subir contador de columna
                 }
+            }
+        };
+
+        void llenarMatrizAleatoriamente() {
+
+            typename std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
+
+            // Repetir el proceso para cada fila
+            for (int i = 0; i < dimFilas; ++i) {
+
+                // Recorrer cada valor
+                for (itr = valores[i].begin(); itr != valores[i].end(); ++itr) {
+                    *itr = rand() % 101;  // Asignar un valor aleatorio 
+                }
+            }
+
+        };
+
+        void imprimirMatrices() {
+            // Recorrer todas las filas
+            for (int i = 0; i < dimFilas; ++i) {
+                // Recorrer todas las columans
+                std::cout << "|";
+
+                for (int j = 0; j < dimColumnas; ++j) {
+                    std::cout << valores[i][j] << " ";
+                }
+
+                std::cout << "|" << std::endl;
             }
         };
 
@@ -235,6 +266,27 @@ void Matriz<std::complex<double>>::llenarMatriz() {
                 *itr = std::complex<double>(real, imaginario);  // Parsear y anadir el valor a la matriz
 
                 ++j;  // Subir contador de columna
+            }
+
+    }
+};
+
+// Especializacion de metodo llenarMatrizAleatoriamente para caso de matriz con numeros complejos
+template<>
+void Matriz<std::complex<double>>::llenarMatrizAleatoriamente() {
+    double real;
+    double imaginario;
+    std::vector<std::complex<double>>::iterator itr;  // Crear un iterador para recorrer las filas
+
+    // Repetir proceso para cada fila
+    for(int i = 0; i < dimFilas; ++i) {
+
+        // Recorrer cada valor
+            for (itr = valores[i].begin(); itr != valores[i].end(); ++itr) {
+                real = rand() % 101;  // Asignar un valor real aleatorio 
+                imaginario = rand() % 101;  // Asignar un valor imaginario aleatorio 
+
+                *itr = std::complex<double>(real, imaginario);  // Parsear y anadir el valor a la matriz
             }
 
     }

@@ -48,7 +48,10 @@ void ingresoValores(int filasA, int columnasA, int filasB, int columnasB, Matriz
                 matrizB.llenarMatriz();
                 break;
             case '2':
-                // Metodo aun no realizado
+                matrizA.setDimensiones(filasA, columnasA);
+                matrizA.llenarMatrizAleatoriamente();
+                matrizB.setDimensiones(filasB, columnasB);
+                matrizB.llenarMatrizAleatoriamente();
                 break;
             default:
                 break;
@@ -122,8 +125,17 @@ void operaciones (int filasA, int columnasA, int filasB, int columnasB, Matriz<T
 
                 break;
             default:
-                std::cout << "Esta opción no es válida, por favor intente de nuevo." << std::endl;
+                std::cout << "Aún no se ha seleccionado la operación que se desea realizar." << std::endl;
                 break;
         }
 
+};
+
+template<typename Tipo>
+void mostrarMatrices(Matriz<Tipo>& matrizA, Matriz<Tipo>& matrizB) {
+    std::cout << "A = " << std::endl;
+    matrizA.imprimirMatrices();
+
+    std::cout << "B = " << std::endl;
+    matrizB.imprimirMatrices();
 };
