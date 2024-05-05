@@ -27,29 +27,43 @@
 
 #include "OperacionesBasicas.hpp"
 
-// Template function para ingresar y realizar operaciones de matrices para cualquier tipo de dato
+// Template function para colocar los valores de las matrices para cualquier tipo de dato
 template<typename Tipo>
-void operaciones (int filasA, int columnasA, int filasB, int columnasB, Matriz<Tipo>& matrizA, Matriz<Tipo>& matrizB, std::vector<std::vector<Tipo>> valoresC, OperacionesBasicas opBasicas) {
+void ingresoValores(int filasA, int columnasA, int filasB, int columnasB, Matriz<Tipo>& matrizA, Matriz<Tipo>& matrizB) {
+    char seleccionIngreso;
+
+    // El usuario selecciona si quiere ingresar los valores manual o aleatoriamente
+    do {
+        std::cout << "¿Desea ingresar los valores manualmente o que estos sean aleatorios?" << std::endl;
+        std::cout << "1) Manual" << std::endl;
+        std::cout << "2) Aleatorio" << std::endl;
+
+        std::cin >> seleccionIngreso;
+
+        switch (seleccionIngreso) {
+            case '1':
+                matrizA.setDimensiones(filasA, columnasA);
+                matrizA.llenarMatriz();
+                matrizB.setDimensiones(filasB, columnasB);
+                matrizB.llenarMatriz();
+                break;
+            case '2':
+                // Metodo aun no realizado
+                break;
+            default:
+                break;
+        }
+    } while (seleccionIngreso != '1' && seleccionIngreso != '2');
+
+}
+
+// Template function para realizar operaciones de matrices para cualquier tipo de dato
+template<typename Tipo>
+void operaciones (int filasA, int columnasA, int filasB, int columnasB, Matriz<Tipo>& matrizA, Matriz<Tipo>& matrizB, std::vector<std::vector<Tipo>> valoresC, OperacionesBasicas opBasicas, char operacion) {
     int validacion;
-    char operacion;
-
-    std::cout << "\nPrimera matriz" << std::endl;
-    matrizA.setDimensiones(filasA, columnasA);
-    matrizA.llenarMatriz();
-
-    std::cout << "\nSegunda matriz" << std::endl;
-    matrizB.setDimensiones(filasB, columnasB);
-    matrizB.llenarMatriz();
 
     // Elegir operacion
-    do {
-        std::cout << "Seleccione la operación que desea aplicar: " << std::endl;
-        std::cout << "s) A + B = C" << std::endl;
-        std::cout << "r) A - B = c" << std::endl;
-        std::cout << "m) A * B = c" << std::endl;
-        std::cin >> operacion;
 
-        std::cout << "Aplicando operación..." << std::endl;
         switch (operacion) {
             case 's':
                 validacion = opBasicas.validarSumaResta(matrizA, matrizB);
@@ -112,5 +126,4 @@ void operaciones (int filasA, int columnasA, int filasB, int columnasB, Matriz<T
                 break;
         }
 
-    } while (operacion != 's' && operacion != 'r' && operacion != 'm');
 };

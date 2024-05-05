@@ -29,13 +29,18 @@
 #define MATRIZ_HPP
 
 #include <vector>
+#include <stdexcept>
+#include <string>
+#include <sstream>
 
 template <typename Tipo>
 class Matriz {
     private:
         std::vector<std::vector<Tipo>> valores;  // Matriz sera un vector de vectores
-        int dimFilas;
-        int dimColumnas;
+
+        // Inicialmente, estos atributos se encontraran en 0
+        int dimFilas = 0;
+        int dimColumnas = 0;
 
     public:
         // Constructor
@@ -46,15 +51,27 @@ class Matriz {
 
         // Metodo para definir las dimensiones de la matriz
         void setDimensiones(int filas, int columnas) {
-            // Dar valor a los atributos de la matriz
-            dimFilas = filas;
-            dimColumnas = columnas;
+            // Verificar que las dimensiones sean enteros positivos (sust. metodo "validarDimensiones")
+            try {
+                if(filas < 1 || columnas < 1) {
+                    throw std::runtime_error("¡Lo siento! Las dimensiones que ingresó para esta matriz no son válidas.");
+                }
 
-            valores.resize(dimFilas);  // Ajustar la cantidad de filas
+                // Este codigo se ejecutara si no se encuentra el error
+                dimFilas = filas;
+                dimColumnas = columnas;
 
-            // Ajustar la cantidad de columnas
-            for (int i = 0; i < dimFilas; ++i) {
-                valores[i].resize(dimColumnas);
+                valores.resize(dimFilas);  // Ajustar la cantidad de filas
+
+                // Ajustar la cantidad de columnas
+                for (int i = 0; i < dimFilas; ++i) {
+                    valores[i].resize(dimColumnas);
+                }
+
+            }
+            catch(const std::exception& e) {
+                std::cerr << e.what() << std::endl;  // Dar el mensaje de error
+                exit(EXIT_FAILURE);  // Terminar el programa
             }
         };
         
@@ -62,6 +79,8 @@ class Matriz {
         void llenarMatriz() {
             int j;  // Contador para indicar al usuario las coordenadas del valor que esta ingresando 
             typename std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
+            std::string ingreso;
+            Tipo verificarIngreso;
 
             // Repetir el proceso para cada fila
             for (int i = 0; i < dimFilas; ++i) {
@@ -70,8 +89,24 @@ class Matriz {
                 // Recorrer cada valor
                 for (itr = valores[i].begin(); itr != valores[i].end(); ++itr) {
                     std::cout << "Ingrese el valor " << i + 1 << " " << j + 1 << ":" << std::endl;
-                    std::cin >> *itr;  // Colocar el valor en la matriz
+                    std::cin >> ingreso;  // Colocar el valor en la matriz
 
+                    // Verificar que el dato ingresado es correcto (sust. validarTipoDato)
+                    std::istringstream converter(ingreso);  // Intentar conversion
+                    converter >> verificarIngreso;
+
+                    try {
+                        if(!converter || !converter.eof()) {
+                            throw std::runtime_error("Esta entrada no corresponde con el tipo de dato.");
+                        }
+                    }
+                    catch (const std::exception& e) {
+                        std::cerr << e.what() << std::endl;  // Dar el mensaje de error
+                        exit(EXIT_FAILURE);  // Terminar el programa        
+                    }
+
+                    // Si no salta el error
+                    *itr = verificarIngreso;
                     ++j;  // Subir contador de columna
                 }
             }
@@ -173,7 +208,7 @@ class Matriz {
 
         };
 
-        // Declaracion de funciones amigas para poder validar las operaciones
+        // Declaracion de clase amiga para poder validar las operaciones
         friend class OperacionesBasicas;
 };
 

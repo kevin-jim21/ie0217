@@ -36,7 +36,9 @@ int main() {
     int columnasMatrizA;
     int filasMatrizB;
     int columnasMatrizB;
+    char opcion;
     char tipo;
+    char operacion;
     vector<vector<int>> intValoresA;
     vector<vector<int>> intValoresB;
     vector<vector<int>> intValoresC;
@@ -60,45 +62,95 @@ int main() {
     Matriz<complex<double>>* ptrComplexMatrizB = &complexMatrizB;
     OperacionesBasicas opBasicas;
 
-    cout << "**********CALCULADORA DE MATRICES**********" << endl;
-
-    cout << "Ingrese las dimensiones de la matriz A: " << endl;
-
-    cout << "Filas: " << endl;
-    cin >> filasMatrizA;
-    cout << "Columnas: " << endl;
-    cin >> columnasMatrizA;
-
-    cout << "Ingrese las dimensiones de la matriz B: " << endl;
-
-    cout << "Filas: " << endl;
-    cin >> filasMatrizB;
-    cout << "Columnas: " << endl;
-    cin >> columnasMatrizB;
-
+    // Bucle para no salir del menu hasta que la opcion sea salir
     do {
-        cout << "Ingrese el tipo de datos con el que desea utilizar las matrices: " << endl;
-        cout << "i) Int" << endl;
-        cout << "f) Float" << endl;
-        cout << "c) Complex" << endl;
-        cin >> tipo;
+        cout << "**********CALCULADORA DE MATRICES**********" << endl;
+        cout << "Por favor ingrese una opción" << endl;
+        cout << "1) Ingresar dimensiones de las matrices" << endl;
+        cout << "2) Seleccionar el tipo de dato que va a ingresar a las matrices" << endl;
+        cout << "3) Seleccionar la operación que va a realizar" << endl;
+        cout << "4) Ingreso de datos para las matrices" << endl;
+        cout << "5) Mostrar las matrices ingresadas" << endl;
+        cout << "6) Ejecutar la operación ingresada" << endl;
+        cout << "7) Salir" << endl;
 
-        switch (tipo) {
-            case 'i':
-                operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrIntMatrizA, *ptrIntMatrizB, intValoresC, opBasicas);
+        cin >> opcion;
+
+        switch(opcion) {
+            case '1':
+                cout << "Ingrese las dimensiones de la matriz A: " << endl;
+
+                cout << "Filas: " << endl;
+                cin >> filasMatrizA;
+                cout << "Columnas: " << endl;
+                cin >> columnasMatrizA;
+
+                cout << "Ingrese las dimensiones de la matriz B: " << endl;
+
+                cout << "Filas: " << endl;
+                cin >> filasMatrizB;
+                cout << "Columnas: " << endl;
+                cin >> columnasMatrizB;
                 break;
-            case 'f':
-                operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrFloatMatrizA, *ptrFloatMatrizB, floatValoresC, opBasicas);
+            case '2':
+                do {
+                    cout << "Ingrese el tipo de datos con el que desea utilizar las matrices: " << endl;
+                    cout << "i) Int" << endl;
+                    cout << "f) Float" << endl;
+                    cout << "c) Complex" << endl;
+                    cin >> tipo;
+                } while (tipo != 'i' && tipo != 'f' && tipo != 'c');
                 break;
-            case 'c':
-                operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrComplexMatrizA, *ptrComplexMatrizB, complexValoresC, opBasicas);
+            case '3':
+                do {
+                    std::cout << "Seleccione la operación que desea aplicar: " << std::endl;
+                    std::cout << "s) A + B = C" << std::endl;
+                    std::cout << "r) A - B = c" << std::endl;
+                    std::cout << "m) A * B = c" << std::endl;
+                    std::cin >> operacion;
+                } while (operacion != 's' && operacion != 'r' && operacion != 'm') ;
                 break;
+            case '4':
+                switch (tipo) {
+                    case 'i':
+                        ingresoValores(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB,*ptrIntMatrizA, *ptrIntMatrizB);
+                        break;
+                    case 'f':
+                        ingresoValores(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB,*ptrFloatMatrizA, *ptrFloatMatrizB);
+                        break;
+                    case 'c':
+                        ingresoValores(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB,*ptrComplexMatrizA, *ptrComplexMatrizB);
+                        break;
+                    default:
+                        cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
+                        break;
+                }
+                break;
+            case '5':
+                break;
+            case '6':
+                switch (tipo) {
+                    case 'i':
+                        operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrIntMatrizA, *ptrIntMatrizB, intValoresC, opBasicas, operacion);
+                        break;
+                    case 'f':
+                        operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrFloatMatrizA, *ptrFloatMatrizB, floatValoresC, opBasicas, operacion);
+                        break;
+                    case 'c':
+                        operaciones(filasMatrizA, columnasMatrizA, filasMatrizB, columnasMatrizB, *ptrComplexMatrizA, *ptrComplexMatrizB, complexValoresC, opBasicas, operacion);
+                        break;
+                    default:
+                        cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
+                        break;
+                }
+                break;
+            case '7':
+                cout << "Saliendo del programa..." << endl;
+                break;  
             default:
-                cout << "Esta opción no es válida, por favor intente de nuevo." << endl;
-                break;
+                break;          
         }
-
-    } while (tipo != 'i' && tipo != 'f' && tipo != 'c');
+    } while (opcion != '7');
 
     return 0;
 }

@@ -29,7 +29,6 @@
 #define OPERACIONES_BASICAS_HPP
 
 #include <iostream>
-#include <stdexcept>
 #include "Matriz.hpp"
 
 class OperacionesBasicas {
@@ -44,7 +43,7 @@ class OperacionesBasicas {
                     throw std::runtime_error("No se puede realizar esta operación ya que las matrices no cuentan con las mismas dimensiones.");
                 }
 
-                // Este codigo no se ejecutara si se encuentra el error
+                // Este codigo se ejecutara si no se encuentra el error
                 return 1;  // Este valor indica que se puede hacer la operacion
             }
             catch(const std::exception& e) {
