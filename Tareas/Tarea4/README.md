@@ -10,7 +10,7 @@ En esta carpeta se pueden encontrar todos los archivos de código fuente utiliza
 + ./calculadoraMatrices.exe
 + make clean (si se desea limpiar el directorio de archivos ejecutables)
 
-**Nota: este comando de ejecución del makefile fue empleado en Linux, para ejecutarlo en windows se debe utilizar el comando wingw32-make y cambiar en la bandera clean "rm" por "del. Para ser empleado correctamente debe ubicarse en la ruta ie0217/Tareas/Tarea4 del repositorio.**
+**Nota: este comando de ejecución del makefile fue empleado en Linux, para ejecutarlo en windows se debe utilizar el comando "wingw32-make" y cambiar en la bandera clean "rm" por "del". Para ser empleado correctamente debe ubicarse en la ruta ie0217/Tareas/Tarea4 del repositorio.**
 
 Además, el siguiente link es en el que se aloja toda la documentación relacionada con este código elaborado:
 
