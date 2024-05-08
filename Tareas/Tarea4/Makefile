@@ -29,4 +29,4 @@ $(TARGET): $(OBJECTS)
 # Regla para limpiar los archivos generados
 .PHONY: clean
 clean:
-	del $(TARGET) $(OBJECTS)
+	rm $(TARGET) $(OBJECTS)

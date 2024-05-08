@@ -1,6 +1,6 @@
 /**
  * @file Matriz.hpp
- * @brief Definición de la template class "Matriz" en donde se define el tamaño de la matriz e introducen sus valores.
+ * @brief Definición de la template class Matriz utilizada para crear y aplicar operaciones entre matrices.
  *
  * MIT License
  *
@@ -35,23 +35,44 @@
 #include <cstdlib>
 #include <ctime>
 
+/**
+ * @class Matriz
+ * @brief Template class mediante la cual se definen matrices y se realizan operaciones para los
+ * tipos de datos int, float y std::complex.
+ * 
+ * En esta template class se encuentran los métodos necesarios para rellenar la matriz y realizar
+ * operaciones entre ellas. Los métodos para dimensionar y rellenar la matriz utilizan control de
+ * excepciones propios de la STL para evitar la caída del programa ante el ingreso de un dato
+ * erróneo por parte del usuario.
+*/
 template <typename Tipo>
 class Matriz {
     private:
-        std::vector<std::vector<Tipo>> valores;  // Matriz sera un vector de vectores
+        std::vector<std::vector<Tipo>> valores;  ///< Vector de vectores que contienene los valores de la matriz.
 
         // Inicialmente, estos atributos se encontraran en 0
-        int dimFilas = 0;
-        int dimColumnas = 0;
+        int dimFilas = 0;  ///< Cantidad de filas de la matriz.
+        int dimColumnas = 0;  ///< Cantidad de columnas de la matriz.
 
     public:
-        // Constructor
+        /**
+        * @brief Constructor de la clase Matriz.
+        * 
+        * @param valores Vector de valores que puede ser de tipo int, float o std::complex<double>.
+        */
         Matriz(std::vector<std::vector<Tipo>> valores) : valores(valores) {}
 
-        // Destructor
+        /**
+        * @brief Destructor de la clase Matriz.
+        */
         ~Matriz() {}
 
-        // Metodo para definir las dimensiones de la matriz
+        /**
+        * @brief Ajustar el tamaño de la matriz, incluyendo un sanity check si alguna dimensión es cero o negativa.
+        * 
+        * @param filas Cantidad de filas que el usuario desea para la matriz.
+        * @param columnas Cantidad de columnas que el usuario desea para la matriz.
+        */
         void setDimensiones(int filas, int columnas) {
             // Verificar que las dimensiones sean enteros positivos (sust. metodo "validarDimensiones")
             try {
@@ -77,7 +98,11 @@ class Matriz {
             }
         };
         
-        // Metodo para introducir los valores a la matriz
+        /** 
+        * @brief Método que solicita al usuario ingresar los valores de la matriz manualmente. Esta
+        * incluye un sanity check en caso de que el usuario ingrese un valor que no concuerda con el tipo
+        * de dato esperado.
+        */
         void llenarMatriz() {
             int j;  // Contador para indicar al usuario las coordenadas del valor que esta ingresando 
             typename std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
@@ -114,6 +139,9 @@ class Matriz {
             }
         };
 
+        /** 
+        * @brief Método que asigna valores aleatorios (dependiendo del tipo) a la matriz.
+        */
         void llenarMatrizAleatoriamente() {
 
             typename std::vector<Tipo>::iterator itr;  // Crear un iterador para recorrer las filas
@@ -129,6 +157,9 @@ class Matriz {
 
         };
 
+        /** 
+        * @brief Método que imprime al usuario la matriz en la terminal. 
+        */
         void imprimirMatrices() {
             // Recorrer todas las filas
             for (int i = 0; i < dimFilas; ++i) {
@@ -145,7 +176,13 @@ class Matriz {
 
         // Sobrecarga de operadores
 
-        // Metodo para sumar dos matrices
+        /** 
+        * @brief Método que calcula la suma de dos matrices.
+        * 
+        * @param matrizB Recibe la segunda matriz que se va a sumar.
+        * 
+        * @return Vector resultado de la operación entre las dos matrices. 
+        */
         std::vector<std::vector<Tipo>> operator+ (const Matriz& matrizB) {
             std::vector<std::vector<Tipo>> resultado;
             int j;
@@ -170,8 +207,14 @@ class Matriz {
             return resultado;
         };
 
-        // Metodo para restar dos matrices
 
+        /** 
+        * @brief Función que calcula la resta de dos matrices.
+        * 
+        * @param matrizB Recibe la matriz la cual va a restar a la primera.
+        * 
+        * @return Vector resultado de la operación entre matrices. 
+        */
         std::vector<std::vector<Tipo>> operator- (const Matriz& matrizB) {
             std::vector<std::vector<Tipo>> resultado;
             int j;
@@ -196,7 +239,13 @@ class Matriz {
             return resultado;
         };
         
-        // Metodo para multiplicar matrices
+        /** 
+        * @brief Función que calcula la multiplicación de dos matrices.
+        * 
+        * @param matrizB Recibe la segunda matriz que va a participar de la multiplicación.
+        * 
+        * @return Vector resultado de la operación entre matrices. 
+        */
         std::vector<std::vector<Tipo>> operator* (const Matriz& matrizB) {
             std::vector<std::vector<Tipo>> resultado;  // Crear la matriz resultado
             int dimFilasMult;
@@ -239,11 +288,14 @@ class Matriz {
 
         };
 
-        // Declaracion de clase amiga para poder validar las operaciones
+        // Declaracion de clase amiga para poder validar las operaciones entre matrices
         friend class OperacionesBasicas;
 };
 
-// Especializacion de metodo llenarMatriz para caso de matriz con numeros complejos
+/** 
+* @brief Especialización del método llenarMatriz para el caso en donde el tipo de datos
+* es de tipo std::complex.
+*/
 template<>
 void Matriz<std::complex<double>>::llenarMatriz() {
     double real;
@@ -271,7 +323,10 @@ void Matriz<std::complex<double>>::llenarMatriz() {
     }
 };
 
-// Especializacion de metodo llenarMatrizAleatoriamente para caso de matriz con numeros complejos
+/** 
+* @brief Especialización del método llenarMatrizAleatoria() para el caso en donde el tipo de datos
+* es de tipo std::complex. 
+*/
 template<>
 void Matriz<std::complex<double>>::llenarMatrizAleatoriamente() {
     double real;

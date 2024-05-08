@@ -1,6 +1,6 @@
 /**
  * @file Funciones.hpp
- * @brief Definicion de template function mediante la cual se aplican las operaciones de matrices independientemente del tipo de datos.
+ * @brief Definicion de template functions mediante las cuales se aplican las operaciones de matrices independientemente del tipo de datos.
  *
  * MIT License
  *
@@ -27,7 +27,21 @@
 
 #include "OperacionesBasicas.hpp"
 
-// Template function para colocar los valores de las matrices para cualquier tipo de dato
+/**
+ * @brief Template Function en la cual se acceden a los métodos públicos de la clase
+ * Matriz para que el usuario pueda ingresar valores a la matriz.
+ * 
+ * El objetivo de esta función es el de utilizar el mismo fragmento de código para dimensionar las matrices 
+ * y llenarlas al utilizar cualquiera de los tipos de datos con los que se está trabajando en este programa.
+ * Esto es posible además, utilizando los métodos setDimensiones(). llenarMatriz() y llenarMatrizAleatoriamente().
+ * 
+ * @param filasA Cantidad de filas que ingresó el usuario para la primera matriz.
+ * @param columnasA Cantidad de columnas que ingresó el usuario para la primera matriz.
+ * @param filasB Cantidad de filas que ingresó el usuario para la segunda matriz.
+ * @param columnasB Cantidad de columnas que ingresó el usuario para la segunda matriz.
+ * @param matrizA Objeto (primera) matriz, el cual puede ser tipo int, float, std::complex<double>.
+ * @param matrizB Objeto (segunda )matriz, el cual puede ser tipo int, float, std::complex<double>.
+*/
 template<typename Tipo>
 void ingresoValores(int filasA, int columnasA, int filasB, int columnasB, Matriz<Tipo>& matrizA, Matriz<Tipo>& matrizB) {
     char seleccionIngreso;
@@ -60,7 +74,25 @@ void ingresoValores(int filasA, int columnasA, int filasB, int columnasB, Matriz
 
 }
 
-// Template function para realizar operaciones de matrices para cualquier tipo de dato
+/**
+ * @brief Template Function en la cual se acceden a los métodos públicos de las clases Matriz y Operaciones
+ * Basicas necesarios para realizar las operaciones entre matrices.
+ * 
+ * Esta función se implementa con el objetivo de, independientemente del tipo de dato; reutilizar la lógica de
+ * selección y aplicación de operaciones a las matrices que involucra utilizar métodos de las clases Matriz (para
+ * realizar la operación) y OperacionesBasicas (para verificar que las operaciones se pueden realizar de acuerdo
+ * a las dimensiones de las matrices).
+ * 
+ * @param filasA Cantidad de filas que ingresó el usuario para la primera matriz.
+ * @param columnasA Cantidad de columnas que ingresó el usuario para la primera matriz.
+ * @param filasB Cantidad de filas que ingresó el usuario para la segunda matriz.
+ * @param columnasB Cantidad de columnas que ingresó el usuario para la segunda matriz.
+ * @param matrizA Objeto (primera) matriz, el cual puede ser tipo int, float, std::complex<double>.
+ * @param matrizB Objeto (segunda )matriz, el cual puede ser tipo int, float, std::complex<double>.
+ * @param valoresC Representa el resultado de la operación entre ambas matrices.
+ * @param opBasicas Instancia de la clase OperacionesBasicas que permite utilizar sus métodos.
+ * @param operacion Recibe un caracter que representa la operación que solicitó realizar el usuario.
+*/
 template<typename Tipo>
 void operaciones (int filasA, int columnasA, int filasB, int columnasB, Matriz<Tipo>& matrizA, Matriz<Tipo>& matrizB, std::vector<std::vector<Tipo>> valoresC, OperacionesBasicas opBasicas, char operacion) {
     int validacion;
@@ -131,6 +163,16 @@ void operaciones (int filasA, int columnasA, int filasB, int columnasB, Matriz<T
 
 };
 
+/**
+ * @brief Template Function en la cual se accede a un método de la clase Matriz para imprimir las matrices que se
+ * desean operar.
+ * 
+ * Esta template function permite aplicar el método imprimirMatrices() para cualquier tipo de dato que se esté utilizando
+ * y de esta manera, no sobrecargar el código del archivo main.
+ * 
+ * @param matrizA Objeto (primera) matriz, el cual puede ser tipo int, float, std::complex<double>.
+ * @param matrizB Objeto (segunda )matriz, el cual puede ser tipo int, float, std::complex<double>.
+*/
 template<typename Tipo>
 void mostrarMatrices(Matriz<Tipo>& matrizA, Matriz<Tipo>& matrizB) {
     std::cout << "A = " << std::endl;

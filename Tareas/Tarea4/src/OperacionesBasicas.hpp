@@ -31,8 +31,28 @@
 #include <iostream>
 #include "Matriz.hpp"
 
+/**
+ * @class OperacionesBasicas
+ * @brief Clase para validar operaciones entre matrices.
+ * 
+ * Esta clase cuenta con los métodos necesarios para verificar si las operaciones
+ * que el usuario desea realizar con las matrices, son posibles de acuerdo a las
+ * dimensiones de ambas. Se hace uso del control de excepciones propio de STL para
+ * levantar las excepciones.
+*/
 class OperacionesBasicas {
     public:
+
+        /** 
+        * @brief Método tipo template para verificar que ambas matrices (de cualquier tipo de dato)
+        * cuenten con las mismas dimensiones para de esta forma, permitir las operaciones de suma
+        * y resta.
+        * 
+        * @param a Primera matriz que se incluye en la operación.
+        * @param b Segunda matriz que se incluye en la operación.
+        * 
+        * @return Retorna 1 si se puede realizar la operación, retorna 0 en caso contrario. 
+        */
         template<typename Template>
         int validarSumaResta(Matriz<Template>& a, Matriz<Template>& b) {
             /* Para que dos matrices se puedan sumar y restar deben tener el mismo
@@ -52,10 +72,19 @@ class OperacionesBasicas {
             }
         }
 
+        /** 
+        * @brief Método tipo template para verificar que las dimensiones de las matrices (de cualquier tipo de dato)
+        * cumplen los requisitos necesarios para poder ser multiplicadas entre sí. Para que se puedan multiplicar,
+        * la cantidad de columnas de la primera matriz debe ser igual a la cantidad de filas de la segunda matriz.
+        * 
+        * @param a Primera matriz que se incluye en la operación.
+        * @param b Segunda matriz que se incluye en la operación.
+        * 
+        * @return Retorna 1 si se puede realizar la operación, retorna 0 en caso contrario. 
+        */
         template<typename Template>
         int validarMultiplicacion(Matriz<Template>&a, Matriz<Template>&b) {
-            /* Para que dos matrices se puedan multiplicar, la cantidad de columnas de la primera matriz
-            debe ser igual a la cantidad de filas de la segunda matriz*/
+            // Verificacion de dimensiones
             try {
                 // Atrapar el error
                 if (a.dimColumnas != b.dimFilas) {
