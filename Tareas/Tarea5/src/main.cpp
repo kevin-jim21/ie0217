@@ -45,7 +45,7 @@ int main() {
     {
     case '1':
         std::cout << "Por favor ingrese su correo:" << std::endl;
-
+        std::cin.ignore();
         getline(std::cin, correo);
 
         InstValidador.validarCorreo(correo);

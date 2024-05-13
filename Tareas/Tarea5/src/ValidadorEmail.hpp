@@ -31,6 +31,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <stdexcept>
 
 class ValidadorEmail {
     public:
