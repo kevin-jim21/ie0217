@@ -34,10 +34,19 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
 
     // Expresiones regulares para el nombre
     std::regex const caracterInicialNombre = std::regex("^[^._-]");
-    std::regex const caracterNombre = std::regex("[A-Za-z0-9.-_]{0,15}");
+    std::regex const caracterNombre = std::regex("[A-Za-z0-9._-]+@");
     std::regex const caracterFinalNombre = std::regex(".*[^._-]@");
-    std::regex const caracterEspecialConsecutivo = std::regex("^(?!.*([._-])\\1)");
-    //std::regex const caracterEspecialConsecutivo = std::regex();
+    std::regex const limCaracteresComunes = std::regex("^[A-Za-z0-9._-]{1,15}@");  // NMod
+    std::regex const caracterEspecialConsecutivo = std::regex("^(?:(?!([._-])\\1)[^@])*@");
+
+
+    // Expresiones regulares para el dominio
+    std::regex const caracterDominio = std::regex("@[A-Za-z.]{3,30}\\.");
+    std::regex const caracterInicialDominio = std::regex(".*@[^.].*");
+    std::regex const caracterFinalDominio = std::regex(".*[^.]\\.[^.]");
+    std::regex const puntoEnMedio = std::regex("\\.+.*\\.");
+
+    // Expresiones regulares para 
 
     // Levantar excepciones de acuerdo al requisito que no se cumple
     try {
@@ -50,17 +59,36 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
         }
         
         if(!std::regex_search(dirEmail, caracterNombre)){
-            throw std::runtime_error("Error: los carácteres que anteceden el \"@\" deben ser letras minúsculas o mayúsculas, números o caráceteres del tipo \".\", \"-\" o \"_\".");
+            throw std::runtime_error("Error: los carácteres que anteceden el \"@\" deben ser letras minúsculas o mayúsculas, números o carácteres del tipo \".\", \"-\" o \"_\".");
         }
 
         if(!std::regex_search(dirEmail, caracterFinalNombre)){
-            // NMod
             throw std::runtime_error("Error: el último carácter antes de \"@\" no puede ser \".\", \"-\" o \"_\".");
         }
 
+        if(!std::regex_search(dirEmail, limCaracteresComunes)){
+            throw std::runtime_error("Los carácteres comunes no pueden ser más de 15.");
+        }
         if(!std::regex_search(dirEmail, caracterEspecialConsecutivo)){
             throw std::runtime_error("Error: no pueden haber dos carácteres consecutivos del tipo \".\", \"-\" o \"_\".");
         }
+
+        if(!std::regex_search(dirEmail, caracterDominio)){
+            throw std::runtime_error("Error: Después de \"@\" y antes del útlimo \".\" sólo pueden ingresarse carácteres alfabéticos y tipo \".\" y no pueden ser más de 33 carácteres.");
+        }
+
+        if(!std::regex_search(dirEmail, caracterInicialDominio)){
+            throw std::runtime_error("Error: el primer carácter después del \"@\" no puede ser \".\".");
+        }
+
+        if(!std::regex_search(dirEmail, caracterFinalDominio)){
+            throw std::runtime_error("Error: el carácter que antecede \".\" no puede ser \".\".");
+        }
+
+        if(!std::regex_search(dirEmail, puntoEnMedio)){
+            throw std::runtime_error("Error: debe existir al menos un \".\" después del \"@\" y antes del primer \".\" de la extensión.");
+        }
+
     } catch(const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
     }
