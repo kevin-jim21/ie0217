@@ -33,26 +33,33 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
     std::regex const arroba = std::regex("@");
 
     // Expresiones regulares para el nombre
-    std::regex const caracterInicialNombre = std::regex("^[^.-_]");
+    std::regex const caracterInicialNombre = std::regex("^[^._-]");
     std::regex const caracterNombre = std::regex("[A-Za-z0-9.-_]{0,15}");
-    std::regex const caracterFinalNombre = std::regex(".*[^.-_]@");
+    std::regex const caracterFinalNombre = std::regex(".*[^._-]@");
+    std::regex const caracterEspecialConsecutivo = std::regex("^(?!.*([._-])\\1)");
+    //std::regex const caracterEspecialConsecutivo = std::regex();
 
     // Levantar excepciones de acuerdo al requisito que no se cumple
     try {
         if(!std::regex_search(dirEmail, arroba)) {
-            throw std::runtime_error("Error: la dirección de correo electrónico debe contener un símbolo \"@\"");
+            throw std::runtime_error("Error: la dirección de correo electrónico debe contener un símbolo \"@\".");
         }
 
         if(!std::regex_search(dirEmail, caracterInicialNombre)) {
-            throw std::runtime_error("Error: el primer carácter no puede ser \".\", \"-\" o \"_\"");
+            throw std::runtime_error("Error: el primer carácter no puede ser \".\", \"-\" o \"_\".");
         }
         
         if(!std::regex_search(dirEmail, caracterNombre)){
-            throw std::runtime_error("Error: los carácteres que anteceden el \"@\" deben ser letras minúsculas o mayúsculas, números o caráceteres del tipo \".\", \"-\" o \"_\"");
+            throw std::runtime_error("Error: los carácteres que anteceden el \"@\" deben ser letras minúsculas o mayúsculas, números o caráceteres del tipo \".\", \"-\" o \"_\".");
         }
 
         if(!std::regex_search(dirEmail, caracterFinalNombre)){
-            throw std::runtime_error("Error: el último carácter no puede ser \".\", \"-\" o \"_\"");
+            // NMod
+            throw std::runtime_error("Error: el último carácter antes de \"@\" no puede ser \".\", \"-\" o \"_\".");
+        }
+
+        if(!std::regex_search(dirEmail, caracterEspecialConsecutivo)){
+            throw std::runtime_error("Error: no pueden haber dos carácteres consecutivos del tipo \".\", \"-\" o \"_\".");
         }
     } catch(const std::runtime_error& e) {
         std::cout << e.what() << std::endl;
