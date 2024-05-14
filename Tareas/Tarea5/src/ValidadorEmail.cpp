@@ -46,7 +46,8 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
     std::regex const caracterFinalDominio = std::regex(".*[^.]\\.[^.]");
     std::regex const puntoEnMedio = std::regex("\\.+.*\\.");
 
-    // Expresiones regulares para 
+    // Expresiones regulares para la extension
+    std::regex const caracterExtension = std::regex("@.*\\..*[^.]\\.[A-Za-z]{2,6}$");  // NMod
 
     // Levantar excepciones de acuerdo al requisito que no se cumple
     try {
@@ -87,6 +88,10 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
 
         if(!std::regex_search(dirEmail, puntoEnMedio)){
             throw std::runtime_error("Error: debe existir al menos un \".\" después del \"@\" y antes del primer \".\" de la extensión.");
+        }
+
+        if(!std::regex_search(dirEmail, caracterExtension)){
+            throw std::runtime_error("Error: la extensión no puede tener menos de 2 letras ni más de 6 letras, los carácteres no pueden ser especiales.");
         }
 
     } catch(const std::runtime_error& e) {
