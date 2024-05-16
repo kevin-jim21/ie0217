@@ -30,18 +30,18 @@
 void ValidadorEmail::validarCorreo(const std::string dirEmail){
 
     // Levantar excepcion principal si la cadena que se recibe no tiene un @
-    std::regex const arroba = std::regex("@");
+    std::regex const arroba = std::regex("^[^\\@]*@[^\\@]*$");
 
     // Expresiones regulares para el nombre
     std::regex const caracterInicialNombre = std::regex("^[^._-]");
     std::regex const caracterNombre = std::regex("[A-Za-z0-9._-]+@");
     std::regex const caracterFinalNombre = std::regex(".*[^._-]@");
-    std::regex const limCaracteresComunes = std::regex("^[A-Za-z0-9._-]{1,15}@");  // NMod
+    std::regex const limCaracteresComunes = std::regex("^[A-Za-z0-9._-]{1,15}@");
     std::regex const caracterEspecialConsecutivo = std::regex("^(?:(?!([._-])\\1)[^@])*@");
 
 
     // Expresiones regulares para el dominio
-    std::regex const caracterDominio = std::regex("@[A-Za-z.]{3,30}\\.");
+    std::regex const caracterDominio = std::regex("@[A-Za-z.]{3,30}\\.");  //NMod
     std::regex const caracterInicialDominio = std::regex(".*@[^.].*");
     std::regex const caracterFinalDominio = std::regex(".*[^.]\\.[^.]");
     std::regex const puntoEnMedio = std::regex("\\.+.*\\.");
@@ -52,7 +52,7 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
     // Levantar excepciones de acuerdo al requisito que no se cumple
     try {
         if(!std::regex_search(dirEmail, arroba)) {
-            throw std::runtime_error("Error: la dirección de correo electrónico debe contener un símbolo \"@\".");
+            throw std::runtime_error("Error: la dirección de correo electrónico debe contener exactamente un símbolo \"@\".");
         }
 
         if(!std::regex_search(dirEmail, caracterInicialNombre)) {
@@ -93,6 +93,8 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
         if(!std::regex_search(dirEmail, caracterExtension)){
             throw std::runtime_error("Error: la extensión no puede tener menos de 2 letras ni más de 6 letras, los carácteres no pueden ser especiales.");
         }
+
+        std::cout << "La dirección de correo es válida." << std::endl;
 
     } catch(const std::runtime_error& e) {
         std::cout << e.what() << std::endl;

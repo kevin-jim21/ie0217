@@ -1,6 +1,6 @@
 #/**
  #* @file Makefile
- #* @brief Archivo para compilar y ejecutar programa Validador de Correos.
+ #* @brief Archivo para compilar y ejecutar programa Validador de Correos con reglas: "all", "build", "run" y "clean".
  #*
  #* MIT License
  #*
@@ -31,7 +31,7 @@ ifeq ($(OS), Windows_NT)
 	RMDIR = rmdir /s /q
 else
 	RM = rm
-	RMDIR = rmdir -rf
+	RMDIR = rm -rf
 endif
 
 # Compilador 
@@ -51,8 +51,15 @@ EXECUTABLE = $(BIN_DIR)/tarea5.x
 # Regla all para compilar y ejecutar el programa
 all: build run
 
-build: $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -o $(EXECUTABLE)
+build: $(BIN_DIR) $(EXECUTABLE)
+
+# Crear directorio para archivos binarios
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
+
+# Crear archivos objeto
+$(EXECUTABLE): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
 # Compilar archivos objeto
 $(BIN_DIR)/%.exe : $(SRC_DIR)/%.cpp
