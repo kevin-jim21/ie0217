@@ -1,6 +1,6 @@
 /**
  * @file ValidadorEmail.hpp
- * @brief 
+ * @brief Declaración de la clase que se encarga de validar una dirección de correo electrónico ingresada por el usuario.
  *
  * MIT License
  *
@@ -33,8 +33,21 @@
 #include <regex>
 #include <stdexcept>
 
+/**
+ * @class ValidadorEmail
+ * @brief Esta clase se utiliza para evaluar si una dirección correo electrónico es válido o no.
+ * 
+ * Esta clase será instanciada en el main, para por medio de su método público validarCorreo(), recibir las
+ * posibles direcciones dadas por el usuario en formato string y validarlas.
+*/
 class ValidadorEmail {
     public:
+        /**
+        * @brief Este método valida las direcciones de correo electrónico utilizando regex y el método regex_search()
+        * para buscar las coincidencias necesarias.
+        * 
+        * @param dirEmail La dirección de correo electrónico que se desea evaluar.
+        */
         void validarCorreo (const std::string dirEmail);
 };
 

@@ -1,6 +1,6 @@
 /**
  * @file main.cpp
- * @brief 
+ * @brief Archivo principal para el programa que evalua direcciones email ingresadas por el usuario.
  *
  * MIT License
  *
@@ -34,17 +34,17 @@ int main() {
     std::string correo;
 
     do {
-    std::cout << "VALIDADOR DE EMAILS" << std::endl;
+    std::cout << "\nVALIDADOR DE EMAILS" << std::endl;
     std::cout << "Por favor seleccione una opción:" << std::endl;
     std::cout << "1) Ingresar el correo electrónico." << std::endl;
-    std::cout << "2) Salir del programa." << std::endl;
+    std::cout << "2) Salir del programa." << std::endl << std::endl;
 
     std::cin >> opMenu;
 
     switch (opMenu)
     {
     case '1':
-        std::cout << "Por favor ingrese su correo:" << std::endl;
+        std::cout << "Por favor ingrese su correo electrónico:" << std::endl;
         std::cin.ignore();
         getline(std::cin, correo);
 

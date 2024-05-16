@@ -1,6 +1,6 @@
 /**
  * @file ValidadorEmail.cpp
- * @brief 
+ * @brief Definición del método utilizado para validar las direcciones de correo electrónico.
  *
  * MIT License
  *
@@ -34,23 +34,28 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
 
     // Expresiones regulares para el nombre
     std::regex const caracterInicialNombre = std::regex("^[^._-]");
-    std::regex const caracterNombre = std::regex("[A-Za-z0-9._-]+@");
+    std::regex const caracterNombre = std::regex("^[A-Za-z0-9._-]+@");
     std::regex const caracterFinalNombre = std::regex(".*[^._-]@");
     std::regex const limCaracteresComunes = std::regex("^[A-Za-z0-9._-]{1,15}@");
     std::regex const caracterEspecialConsecutivo = std::regex("^(?:(?!([._-])\\1)[^@])*@");
 
 
     // Expresiones regulares para el dominio
-    std::regex const caracterDominio = std::regex("@[A-Za-z.]{3,30}\\.");  //NMod
+    std::regex const caracterDominio = std::regex("@[A-Za-z.]{3,30}(\\.[^.]{2,6}){1,2}$");
     std::regex const caracterInicialDominio = std::regex(".*@[^.].*");
-    std::regex const caracterFinalDominio = std::regex(".*[^.]\\.[^.]");
-    std::regex const puntoEnMedio = std::regex("\\.+.*\\.");
+    std::regex const caracterFinalDominio = std::regex("[^.]{7,}(\\.[^.]{2,6}){1,2}$");
+    std::regex const puntosConsecutivos = std::regex("@(?:(?!([.])\\1)[^@])*$");
+    std::regex const puntoEnMedio = std::regex("@[^.]+([.][^.]{7,})+(\\.[^.]{2,6}){1,2}$");
 
     // Expresiones regulares para la extension
-    std::regex const caracterExtension = std::regex("@.*\\..*[^.]\\.[A-Za-z]{2,6}$");  // NMod
+    std::regex const caracterExtension = std::regex("[^.]{7,}(\\.[A-Za-z]{2,6}){1,2}$");
 
     // Levantar excepciones de acuerdo al requisito que no se cumple
     try {
+        /* Se utiliza el metodo regex_search() ya que al ser muchas expresiones regulares, cada una
+        declarada con el fin de detectar un error en especifico, es mas util que se obtenga un true
+        cuando una parte de la expresion hace match y no necesariamente cuando toda la expresion hace match*/
+
         if(!std::regex_search(dirEmail, arroba)) {
             throw std::runtime_error("Error: la dirección de correo electrónico debe contener exactamente un símbolo \"@\".");
         }
@@ -68,14 +73,14 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
         }
 
         if(!std::regex_search(dirEmail, limCaracteresComunes)){
-            throw std::runtime_error("Los carácteres comunes no pueden ser más de 15.");
+            throw std::runtime_error("Los carácteres comunes antes de \"@\" no pueden ser más de 15.");
         }
         if(!std::regex_search(dirEmail, caracterEspecialConsecutivo)){
             throw std::runtime_error("Error: no pueden haber dos carácteres consecutivos del tipo \".\", \"-\" o \"_\".");
         }
 
         if(!std::regex_search(dirEmail, caracterDominio)){
-            throw std::runtime_error("Error: Después de \"@\" y antes del útlimo \".\" sólo pueden ingresarse carácteres alfabéticos y tipo \".\" y no pueden ser más de 33 carácteres.");
+            throw std::runtime_error("Error: Después de \"@\" y antes del útlimo \".\" sólo pueden ingresarse carácteres alfabéticos y tipo \".\" y debe contener entre 3 y 30 carácteres alfabéticos.");
         }
 
         if(!std::regex_search(dirEmail, caracterInicialDominio)){
@@ -83,8 +88,13 @@ void ValidadorEmail::validarCorreo(const std::string dirEmail){
         }
 
         if(!std::regex_search(dirEmail, caracterFinalDominio)){
-            throw std::runtime_error("Error: el carácter que antecede \".\" no puede ser \".\".");
+            throw std::runtime_error("Error: el carácter que antecede al primer \".\" de la extensión no puede ser \".\".");
         }
+
+        if(!std::regex_search(dirEmail, puntosConsecutivos)){
+            throw std::runtime_error("Error: después de \"@\" y antes del primer \".\" de la extensión no pueden haber dos carácteres tipo \".\" seguidos.");
+        }
+
 
         if(!std::regex_search(dirEmail, puntoEnMedio)){
             throw std::runtime_error("Error: debe existir al menos un \".\" después del \"@\" y antes del primer \".\" de la extensión.");
