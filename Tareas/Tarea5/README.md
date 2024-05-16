@@ -6,6 +6,10 @@ En esta carpeta se pueden encontrar todos los archivos de código fuente utiliza
 
 Para el programa Validador de Emails se realizó un Makefile (el cual también forma parte de esta sección práctica) en el cual se utilizaron los siguientes targets: "all", "build", "run" y "clean". Por lo que para compilar y ejecutar este programa se puede utilizar el comando "make" el cual ejecuta el target all, que a su vez ejecuta build y consecutivamente run; mientras que después de utilizar el programa se puede ingresar el comando "make clean" para eliminar el directorio de archivos generados posteriores a la compilación del programa.
 
+A continuación se muestra el link donde se encuentra alojada la documentación de Doxygen:
+
+- https://willowy-wisp-dfba61.netlify.app
+
 *Importante: Esta parte práctica fue desarrollada en un entorno Linux; sin embargo el Makefile está adaptado para funcionar tanto en Linux como en Windows. Además, para poder ejecutar el Makefile correctamente es necesario que esté colocado en este mismo directorio.*
 
 ## Parte Teórica
