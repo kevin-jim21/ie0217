@@ -6,7 +6,7 @@ En este directorio, se encuentran todos los archivos de código fuente, cabecera
 
 Para la parte práctica se utilizó como base de datos una instancia local de MySQL; realizando cada una de las operaciones de tipo CRUD mediante la aplicación MySQL Workbench. Como consecuencia de esto, lo ideal para ejecutar esta tarea es abrir los códigos que se encuentra en la carpeta src en mySQL Workbench y ejecutarlos desde esta herramienta.
 
-## Parte Teórica
+## **Parte Teórica**
 
 *1. ¿Qué es una base de datos relacional y cuáles son sus características fundamentales?*
 
@@ -67,17 +67,21 @@ Los procedimientos almacenados mencionados en el inciso anterior, permiten utili
 + Uno a muchos: En este tipo una fila de la primera tabla puede coincidir con muchas filas de la segunda tabla, este tipo de relaciones son utilizadas si sólo una de las columnas relacionadas es una clave principal o tiene restricción única.  [6]
 + Muchos a muchos: En este tipo de relación una fila de la primera tabla puede coincidir con muchas filas de la segunda tabla y viceversa; para esta relación es necesario definir una tercer tabla conocida como "tabla de conexión", en donde la clave principal sea la combinación de las claves extranjeras de la primera y la segunda tabla. [6]
 
-## Parte Práctica
+## **Parte Práctica**
 
-### Creación de la Base de Datos y Tablas
+### *Creación de la Base de Datos y Tablas*
 
-### Insercción de datos
+Para empezar, se utilizó el script "creacionTablas.sql" para definir y crear las tablas Cursos, Requisitos y Descripciones, el cual se observa a continuación:
 
-### Consultas
+<image src="/images/codigo01.png" alt="creacionTablas.sql">
 
-### Eliminaciones
+### *Insercción de datos*
 
-## Referencias
+### *Consultas*
+
+### *Eliminaciones*
+
+## **Referencias**
 
 - [1] IBM. (2021). Último acceso: 2024-06-08, desde https://www.ibm.com/docs/es/psfa/7.1.0?topic=appliance-transactions
 - [2] IBM. (2022). Último acceso: 2024-06-08, desde https://www.ibm.com/docs/es/cics-tx/11.1?topic=processing-acid-properties-transactions
