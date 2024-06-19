@@ -13,7 +13,7 @@ CREATE TABLE Cursos(
 	CursoID INT AUTO_INCREMENT PRIMARY KEY,    
     Sigla VARCHAR(7) UNIQUE,  -- Clave candidata
     Nombre VARCHAR(75) UNIQUE,  -- Clave candidata
-    Semestre VARCHAR(3),  -- Sera IX o X
+    Semestre VARCHAR(4),
     Creditos INT
 );
 

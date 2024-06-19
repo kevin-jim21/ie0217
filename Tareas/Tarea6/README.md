@@ -73,9 +73,18 @@ Los procedimientos almacenados mencionados en el inciso anterior, permiten utili
 
 Para empezar, se utilizó el script "creacionTablas.sql" para definir y crear las tablas Cursos, Requisitos y Descripciones, el cual se observa a continuación:
 
-<image src="/images/codigo01.png" alt="creacionTablas.sql">
+<image src="images\codigo01.png" alt="creacionTablas.sql">
+
+En el anterior script es posible visualizar el uso de claves primarias, únicas y foráneas según lo solicitado. Después de ejecutar este script, fue posible observar la existencia de cada una de las tablas dentro de la base de datos plan_de_estudios:
+
+<image src="images\resultado02.png" alt="Resultado Obtenido al ejecutar el código creacionTablas.sql">
 
 ### *Insercción de datos*
+
+Se realizó la primera insercción de datos, en la que se busca añadir la información básica sobre los cursos del plan de estudio; en donde las optativas son tomadas con nombres generales tal como el cronograma las muestra y por consecuente, se encuentran con descripciones genéricas. Esta acción fue realizada mediante el script "insercionDatos.sql", visualizado en las siguientes imágenes:
+
+<image src="images\codigo02.png" alt="insercionDatos.sql">
+<image src="images\codigo03.png" alt="insercionDatos2.sql">
 
 ### *Consultas*
 
