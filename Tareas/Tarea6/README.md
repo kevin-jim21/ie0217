@@ -77,7 +77,7 @@ Para empezar, se utilizó el script "creacionTablas.sql" para definir y crear la
 
 En el anterior script es posible visualizar el uso de claves primarias, únicas y foráneas según lo solicitado. Después de ejecutar este script, fue posible observar la existencia de cada una de las tablas dentro de la base de datos plan_de_estudios:
 
-<image src="images\resultado02.png" alt="Resultado Obtenido al ejecutar el código creacionTablas.sql">
+<image src="images\resultado02.png" alt="Resultado obtenido al ejecutar el código creacionTablas.sql">
 
 ### *Insercción de datos*
 
@@ -85,6 +85,22 @@ Se realizó la primera insercción de datos, en la que se busca añadir la infor
 
 <image src="images\codigo02.png" alt="insercionDatos.sql">
 <image src="images\codigo03.png" alt="insercionDatos2.sql">
+
+Al ejecutar este código, se pueden visualizar los siguientes cambios en las tablas de la base de datos:
+
+<image src="images\resultado03.png" alt="Resultado obtenido al ejecutar insercionDatos.sql">
+<image src="images\resultado04.png" alt="Resultado obtenido al ejecutar insercionDatos2.sql">
+<image src="images\resultado05.png" alt="Resultado obtenido al ejecutar insercionDatos3.sql">
+
+Es necesario mencionar, que también fue necesario añadir a la tabla Cursos todos aquellos cursos del grado de bachillerato que son requisitos de los cursos de este plan de estudio para poder realizar la relación de requisitos correctamente. Posteriormente, se añaden dos cursos nuevos, lo que implica a su vez añadir un tercer curso del grado de bachillerato que es requisito para el segundo curso. A continuación se muestra el código "cursosNuevos.sql", que realiza estas acciones:
+
+<image src="images\codigo04.png" alt="cursosNuevos.sql">
+
+Al ejecutar estos códigos, es posible observar gracias a las herramientas de mySQL Workbench, los cambios en las tablas de la base de datos:
+
+<image src="images\resultado06.png" alt="Resultado obtenido al ejecutar cursosNuevos.sql">
+<image src="images\resultado07.png" alt="Resultado obtenido al ejecutar cursosNuevos2.sql">
+<image src="images\resultado08.png" alt="Resultado obtenido al ejecutar cursosNuevos3.sql">
 
 ### *Consultas*
 
