@@ -4,6 +4,8 @@ En este directorio, se encuentran todos los archivos de código fuente, cabecera
 
 ## Instrucciones de ejecución
 
+Para la parte práctica se utilizó como base de datos una instancia local de MySQL; realizando cada una de las operaciones de tipo CRUD mediante la aplicación MySQL Workbench. Como consecuencia de esto, lo ideal para ejecutar esta tarea es abrir los códigos que se encuentra en la carpeta src en mySQL Workbench y ejecutarlos desde esta herramienta.
+
 ## Parte Teórica
 
 *1. ¿Qué es una base de datos relacional y cuáles son sus características fundamentales?*
@@ -66,6 +68,14 @@ Los procedimientos almacenados mencionados en el inciso anterior, permiten utili
 + Muchos a muchos: En este tipo de relación una fila de la primera tabla puede coincidir con muchas filas de la segunda tabla y viceversa; para esta relación es necesario definir una tercer tabla conocida como "tabla de conexión", en donde la clave principal sea la combinación de las claves extranjeras de la primera y la segunda tabla. [6]
 
 ## Parte Práctica
+
+### Creación de la Base de Datos y Tablas
+
+### Insercción de datos
+
+### Consultas
+
+### Eliminaciones
 
 ## Referencias
 
