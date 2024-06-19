@@ -81,7 +81,7 @@ En el anterior script es posible visualizar el uso de claves primarias, únicas 
 
 ### *Insercción de datos*
 
-Se realizó la primera insercción de datos, en la que se busca añadir la información básica sobre los cursos del plan de estudio; en donde las optativas son tomadas con nombres generales tal como el cronograma las muestra y por consecuente, se encuentran con descripciones genéricas. Esta acción fue realizada mediante el script "insercionDatos.sql", visualizado en las siguientes imágenes:
+Se realizó la primera insercción de datos, en la que se busca añadir la información básica sobre los cursos del plan de estudio; en donde las optativas son tomadas con nombres generales tal como el plan de estudio las muestra y por consecuente, se encuentran con descripciones genéricas. Esta acción fue realizada mediante el script "insercionDatos.sql", visualizado en las siguientes imágenes:
 
 <image src="images\codigo02.png" alt="insercionDatos.sql">
 <image src="images\codigo03.png" alt="insercionDatos2.sql">
@@ -103,6 +103,19 @@ Al ejecutar estos códigos, es posible observar gracias a las herramientas de my
 <image src="images\resultado08.png" alt="Resultado obtenido al ejecutar cursosNuevos3.sql">
 
 ### *Consultas*
+
+Para esta sección de consultas se elaboró un sólo script llamado "consultas.sql", en el que se encuentran todas las consultas realizadas. La primera consulta consiste en formar una lista de todos los cursos del plan de estudio mostrando su sigla, nombre, semestre, créditos, descripción y dificultad. En la segunda consulta se listan todos los requisitos de un curso en específico, en la tercera consulta se listan los cursos que no son optativos y en la última, se busca mostrar una lista de los cursos que pertenecen al décimo semestre. El script "consultas.sql" se puede visualizar a continuación:
+
+<image src="images\codigo05.png" alt="consultas.sql">
+
+Existe una particularidad en la primera y tercera consulta, en donde se solicita que el curso sea del noveno o del décimo semestre; se incluye esta instrucción para no mostrar cursos que no pertenecen al plan de estudios de licenciatura y que se encuentran en la base de datos exclusivamente porque son requisitos de otros. Por otro lado, en la segunda consulta se toma como ejemplo el curso "Ciencia de datos para la estimación y pronóstico de eventos". A continuación, se pueden ver los resultados obtenidos para cada una de las consultas realizadas anteriormente, respectivamente:
+
+<image src="images\resultado09.png" alt="Resultado obtenido al ejecutar consultas.sql">
+<image src="images\resultado10.png" alt="Resultado obtenido al ejecutar consultas2.sql">
+<image src="images\resultado11.png" alt="Resultado obtenido al ejecutar consultas2.sql">
+<image src="images\resultado12.png" alt="Resultado obtenido al ejecutar consultas4.sql">
+
+### *Actualizaciones*
 
 ### *Eliminaciones*
 
