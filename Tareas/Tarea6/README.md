@@ -1,6 +1,6 @@
 # TAREA 6
 
-En este directorio, se encuentran todos los archivos de código fuente, cabecera y relacionados con documentación empleados para la parte práctica de la tarea 6. Así mismo, en este archivo README se encuentran las instrucciones de compilación y ejecución de la parte práctica, el link donde se aloja la documentación y la parte teórica de esta tarea.
+En este directorio, se encuentran todos los archivos de código fuente y relacionados empleados para la parte práctica de la tarea 6. Así mismo, en este archivo README se encuentran las instrucciones de ejecución del código empleado para la parte práctica y la parte teórica de esta tarea.
 
 ## Instrucciones de ejecución
 
@@ -130,6 +130,24 @@ Después de ejecutar el código, se pudieron observar resultados exitosos en cad
 <image src="images\resultado16.png" alt="Resultado obtenido al ejecutar actualizaciones4.sql">
 
 ### *Eliminaciones*
+
+Antes de visualizar las eliminaciones, puede ser útil observar en las imágenes de resultados que se encuentran en la sección anterior, el estado de todas las tablas de la base de datos antes de realizar estas operaciones. Una vez mencionado esto, es necesario destacar que el código principal utilizado para esta sección es el que se encuentra en "eliminaciones.sql", en este se puede observar la eliminación de los cursos: Intérpretes y Compiladores (inventado), Administración de Sistemas (existente) y Salud Ocupacional (existe). Además, para eliminar estos de la tabla cursos fue necesario recurrir a eliminar sus apariencias como claves foráneas en las demás tablas, ya que sólamente de esta forma es que el motor MySQL permitió hacer la eliminación de los cursos.
+
+Por otro lado, se eliminaron los requisitos específicos de los cursos "Electrónica de Potencia y control de máquinas" y "Ciencia de datos para la estimación y pronóstico de eventos" (Electrónica II para el primero, Modelos Probabilísticos de Señales y Sistemas para el segundo). En la siguiente imagen, se puede visualizar el código que se ejecutó para realizar todas estas operaciones:
+
+<image src="images\codigo08.png" alt="eliminaciones.sql">
+<image src="images\codigo09.png" alt="eliminaciones2.sql">
+
+A continuación, se pueden visualizar los estados finales de cada una de la tabla de la base de datos, en donde se evidencian todas estas eliminaciones:
+
+<image src="images\resultado17.png" alt="Resultado obtenido al ejecutar eliminaciones.sql">
+<image src="images\resultado18.png" alt="Resultado obtenido al ejecutar eliminaciones2.sql">
+<image src="images\resultado19.png" alt="Resultado obtenido al ejecutar eliminaciones3.sql">
+
+Para visualizar de una forma más sencilla las eliminaciones de requisitos específicos, se ejecutó el código almacenado en el archivo "consultasExtra.sql" para obtener la lista de requisitos para los cursos a los cuales se les removió uno de ellos. En las siguientes imágenes se observa tanto la lista de requisitos para Electrónica de Potencia y control de máquinas, como la lista de requisitos para Ciencia de datos para la estimación y pronóstico de eventos:
+
+<image src="images\extra01.png" alt="Resultado obtenido al ejecutar consultasExtra.sql">
+<image src="images\extra02.png" alt="Resultado obtenido al ejecutar consultasExtra2.sql">
 
 ## **Referencias**
 
