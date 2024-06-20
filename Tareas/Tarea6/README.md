@@ -117,6 +117,18 @@ Existe una particularidad en la primera y tercera consulta, en donde se solicita
 
 ### *Actualizaciones*
 
+En cuánto a la sección de actualizaciones, similar a la anterior se utilizó un solo script, en este caso bajo el nombre de "actualizaciones.sql". En primer lugar, se realizaron los cambios en el nombre y los créditos de tres de los cursos optativos; en donde se cambió el nombre genérico por el nombre de una optativa real y sus créditos se cambiaron a 2 o 4 (esto último puramente con fines didácticos, ya que en realidad todo curso optativo cuenta con tres créditos). Posteriormente, se añadió a la tabla cursos dos cursos requisitos de los cursos optativos recién actualizados y después de esto, se insertaron cada una de las dependencias nuevas en la tabla requisitos. Por último, se modificaron las descripciones y dificultades de 3 de los cursos del plan de licenciatura. Este código completo se puede visualizar en las siguientes imagenes:
+
+<image src="images\codigo06.png" alt="actualizaciones.sql">
+<image src="images\codigo07.png" alt="actualizaciones2.sql">
+
+Después de ejecutar el código, se pudieron observar resultados exitosos en cada una de las tablas. Los cambios mencionados anteriormente se evidencian a continuación:
+
+<image src="images\resultado13.png" alt="Resultado obtenido al ejecutar actualizaciones.sql">
+<image src="images\resultado14.png" alt="Resultado obtenido al ejecutar actualizaciones2.sql">
+<image src="images\resultado15.png" alt="Resultado obtenido al ejecutar actualizaciones3.sql">
+<image src="images\resultado16.png" alt="Resultado obtenido al ejecutar actualizaciones4.sql">
+
 ### *Eliminaciones*
 
 ## **Referencias**
